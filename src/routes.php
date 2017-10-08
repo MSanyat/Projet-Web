@@ -8,7 +8,7 @@ use Slim\Http\Response;
 // ajout d'une route test
 $app->get('/test',function(Request $request, Response $response){
 	echo "ceci est un test";
-}); /** on place cette route en premier car sinon il y a une erreur à cause de la route '/[{name}]'
+}); 
 
 //main de slim par défault
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
