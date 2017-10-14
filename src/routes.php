@@ -5,7 +5,10 @@ use Slim\Http\Response;
 
 // Routes
 
-
+// ajout d'une route test
+$app->get('/test',function(Request $request, Response $response){
+	echo "ceci est un test";
+}); 
 
 //main de slim par défault
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
@@ -33,6 +36,8 @@ $app->get('/hello/{name}', function (Request $request, Response $response) {
 
     return $response;
 });
+
+
 
 
 
