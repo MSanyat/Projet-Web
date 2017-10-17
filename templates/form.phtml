@@ -2,32 +2,89 @@
 <html>
     <head>
         <meta charset="utf-8"/>
-        <title>Slim 3</title>
-        <link href='//fonts.googleapis.com/css?family=Lato:300' rel='stylesheet' type='text/css'>
-        <style>
-            body {
-                margin: 50px 0 0 0;
-                padding: 0;
-                width: 100%;
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-                text-align: center;
-                color: #aaa;
-                font-size: 18px;
-            }
+        <title>Ajout d'une expérience restaurant</title>
+        <link href='../templates/css/stylesite.css' rel='stylesheet' type='text/css'>
 
-            h1 {
-                color: #719e40;
-                letter-spacing: -3px;
-                font-family: 'Lato', sans-serif;
-                font-size: 50px;
-                font-weight: 200;
-                margin-bottom: 0;
-            }
-        </style>
     </head>
     <body>
         <h1>Formulaire</h1>
-        <div>Ajout d'une expérience au restaurant de mon choix.</div>
+		
+        <h2>Ajout d'une expérience au restaurant de mon choix.</h2>
+		
+		
+		
+		
+		<form action="/Ajout-Reussi" method="post" >
+		
+			<!-- nom -->
+			<div>
+				<label for="name">Nom du restaurant</label>
+				<input type="text" id="name" />
+			</div>
+			
+			
+			
+			<!-- localisation -->
+			<div>
+				<label for="location">Adresse</label>
+				<input type="text" id="location" />
+			</div>
+			
+			
+			<!-- note ++ -->
+			<div>
+				<label for="courriel">Note</label> 
+			</div>
+			
+			
+			<!-- type ++ -->
+			<div>
+				<label for="message">Type</label> 
+			</div>
+			
+			
+			
+			<!-- prix ++ -->
+			<div>
+				<label for="courriel">Prix</label> 
+			</div>
+			
+			
+			
+			
+			<!-- avis -->
+			<div>
+				<label for="review">Avis</label>
+				<textarea id="review"></textarea>
+			</div>
+			
+			<div >
+				<button type="submit" class="button">Ajouter la review</button>
+			</div>
+			
+		
+		</form>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		

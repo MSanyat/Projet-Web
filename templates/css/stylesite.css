@@ -1,0 +1,95 @@
+body {
+	margin: 50px 0 0 0;
+	padding: 0;
+	width: 100%;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	text-align: center;
+	color: #aaa;
+	font-size: 18px;
+}
+
+h1 {
+	color: #d40200;
+	letter-spacing: -3px;
+	font-family: 'Lato', sans-serif;
+	font-size: 50px;
+	font-weight: 200;
+	margin-bottom: 0;
+	border-bottom : 1px solid #d40200;
+}
+
+h2{
+	
+	margin-top: 20px;
+	font-size: 20px;
+}
+
+
+form{
+    /* Pour le centrer dans la page */
+    margin: 0 auto;
+    width: 400px;
+	display: inline-block;
+	/* Pour voir les limites du formulaire */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+	
+}
+
+form div + div {
+    margin-top: 1em;
+}
+
+label {
+    /* Afin de s'assurer que toutes les étiquettes aient la même dimension et soient alignées correctement */
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+	background:blue;
+}
+
+input, textarea {
+    /* Afin de s'assurer que tous les champs textuels utilisent la même police
+       Par défaut, textarea utilise une police à espacement constant */
+    font: 1em sans-serif;
+
+    /* Pour donner la même dimension à tous les champs textuels */
+    width: 300px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+
+    /* Pour harmoniser l'apparence des bordures des champs textuels */
+    border: 1px solid #999;
+}
+
+input:focus, textarea:focus {
+    /* Afin de rehausser les éléments actifs */
+    border-color: #000;
+}
+
+textarea {
+    /* Pour aligner correctement les champs multilignes et leurs étiquettes */
+    vertical-align: top;
+
+    /* Pour donner assez d'espace pour entrer du texte */
+    height: 5em;
+
+    /* Pour permettre aux utilisateurs de redimensionner un champ textuel horizontalement
+       Cela ne marche pas avec tous les navigateurs  */
+    resize: vertical;
+}
+
+.button {
+    background-color: #CCC;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+
