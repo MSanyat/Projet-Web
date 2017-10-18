@@ -1,5 +1,9 @@
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+
 body {
-	margin: 50px 0 0 0;
+	margin: 0px 0 0 0;
 	padding: 0;
 	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -9,19 +13,37 @@ body {
 }
 
 h1 {
-	color: #d40200;
+	color: white;
 	letter-spacing: -3px;
 	font-family: 'Lato', sans-serif;
 	font-size: 50px;
 	font-weight: 200;
 	margin-bottom: 0;
-	border-bottom : 1px solid #d40200;
+	border-bottom : 1px solid white;
 }
 
 h2{
 	
-	margin-top: 20px;
+	padding-top: 10px;
 	font-size: 20px;
+}
+
+
+/*********************** FORM ****************************/
+
+#body-form{
+	background: #602b2b;
+}
+
+
+#body-form .form-div{ 
+	background: url("../../public/img/bg-resto-1.jpg");
+	padding-top:20px;
+}
+
+
+#body-form h2{
+	color: #602b2b;
 }
 
 
@@ -34,6 +56,7 @@ form{
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
+	background:white;
 	
 }
 
@@ -45,8 +68,7 @@ label {
     /* Afin de s'assurer que toutes les étiquettes aient la même dimension et soient alignées correctement */
     display: inline-block;
     width: 200px;
-    text-align: center;
-	background:blue;
+    text-align: center; 
 }
 
 input, textarea {
@@ -92,4 +114,97 @@ textarea {
     margin: 4px 2px;
     cursor: pointer;
 }
+
+
+
+
+
+
+
+
+
+/************* 5 ICONES DE RATING / 3 ICONES DE PRICES  ************/
+div.stars, div.prices {
+  display: inline-block;
+}
+
+input.star, input.price { display: none; }
+
+label.star, label.price  {
+  float: right;
+  padding: 7px;
+  font-size: 30px;
+  color: #444;
+  transition: all .2s;
+  display: inline;
+  width: 30px;
+  text-align: left;
+}
+
+input.star:checked ~ label.star:before{
+  content: '\f0f5';/** f005 pour des stars**/
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.price:checked ~ label.price:before {
+  content: '\f153';/** f005 pour des stars**/
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before{
+  color: #b4f830;
+  text-shadow: 0 0 5px #99ff77;
+}
+
+input.price-3:checked ~ label.price:before {
+  color: #b4f830;
+  text-shadow: 0 0 2px #f55600;
+}
+
+
+
+input.star-1:checked ~ label.star:before { color: #fd1100; }
+input.star-2:checked ~ label.star:before { color: #ff9622; }
+input.star-3:checked ~ label.star:before { color: #ffe13b; }
+input.star-4:checked ~ label.star:before { color: #98d786; }
+input.star-5:checked ~ label.star:before { color: #98d728; }
+
+
+input.price-1:checked ~ label.price:before  { color: #98d728; }
+input.price-2:checked ~ label.price:before  { color: #ffe13b; }
+input.price-3:checked ~ label.price:before  { color: #fd1100; }
+
+
+
+
+label.star:hover, label.price:hover { transform: rotate(-15deg) scale(1.3); }
+
+
+label.star:before {
+  content: '\f0f5';
+  font-family: FontAwesome;
+}
+
+
+label.price:before  {
+  content: '\f153';
+  font-family: FontAwesome;
+}
+
+
+
+
+
+/************* SELECT TYPES DE CUISINE ************/
+
+
+select{
+	display: inline-block;
+	text-align:center;
+	
+}
+
+
 
