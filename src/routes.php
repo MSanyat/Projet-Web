@@ -23,7 +23,7 @@ $app->get('/Ajout', function (Request $request, Response $response, array $args)
 });
 $app->post('/Ajout-Reussi', function(Request $request,Response $response,array $args) {
 	echo 'Ajout-Reussi';
-	return $this->renderer->render($response, 'form.phtml', $args);
+	return $this->renderer->render($response, 'index.phtml', $args);
 });
 
 
