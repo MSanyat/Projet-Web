@@ -1,41 +1,24 @@
 <?php 
 
 
-namespace App;
+//namespace App;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-use Slim\Views\Twig;
-use Psr\Log\LoggerInterface;
-use Illuminate\Database\Query\Builder;
-use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
 
-class Order extends Eloquent {
-	protected $fillable = ['title'];
-	public $timestamps = false;
+
+class Restaurant extends Eloquent {
+
+
 	
-    private $view;
-    private $logger;
-    protected $table;
+	protected $table = 'restaurant';
+	
+	protected $name;
+	protected $location;
+	protected $price;
+	protected $rating;
+	protected $type;
+	protected $review;
+	
+	
 
-    public function __construct(
-        Twig $view,
-        LoggerInterface $logger,
-        Builder $table
-    ) {
-        $this->view = $view;
-        $this->logger = $logger;
-        $this->table = $table;
-    }
-
-    public function __invoke(Request $request, Response $response, $args)
-    {
-        $widgets = $this->table->get();
-
-        $this->view->render($response, 'app/index.twig', [
-            'widgets' => $widgets
-        ]);
-
-        return $response;
-    }
 }

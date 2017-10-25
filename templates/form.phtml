@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8"/>
         <title>Ajout d'une expérience restaurant</title>
-        <link href='../templates/css/stylesite.css' rel='stylesheet' type='text/css'>
+        <link href='css/stylesite.css' rel='stylesheet' type='text/css'>
 
     </head>
     <body id="body-form">
@@ -19,7 +19,7 @@
 			<!-- nom -->
 			<div>
 				<label for="name">Nom du restaurant</label>
-				<input type="text" id="name" />
+				<input type="text" id="name" name="name"/>
 			</div>
 			
 			
@@ -27,7 +27,7 @@
 			<!-- localisation -->
 			<div>
 				<label for="location">Adresse</label>
-				<input type="text" id="location" />
+				<input type="text" id="location" name="location"/>
 			</div>
 			
 			
@@ -35,11 +35,11 @@
 			<div>
 				<label for="courriel">Note</label> 
 				<div class="stars">
-					<input class="star star-5" id="star-5" type="radio" name="star"/><label class="star star-5" for="star-5"  title="Excellent !"></label>
-					<input class="star star-4" id="star-4" type="radio" name="star"/><label class="star star-4" for="star-4"  title="Bon"></label>
-					<input class="star star-3" id="star-3" type="radio" name="star"/><label class="star star-3" for="star-3" title="Pas mal"></label>
-					<input class="star star-2" id="star-2" type="radio" name="star"/><label class="star star-2" for="star-2" title="Peut mieux faire" ></label>
-					<input class="star star-1" id="star-1" type="radio" name="star" checked="true"/><label class="star star-1" for="star-1" title="Nul"></label>
+					<input class="star star-5" id="star-5" type="radio" name="star" value="1"/><label class="star star-5" for="star-5"  title="Excellent !"></label>
+					<input class="star star-4" id="star-4" type="radio" name="star" value="2"/><label class="star star-4" for="star-4"  title="Bon"></label>
+					<input class="star star-3" id="star-3" type="radio" name="star" value="3"/><label class="star star-3" for="star-3" title="Pas mal"></label>
+					<input class="star star-2" id="star-2" type="radio" name="star" value="4"/><label class="star star-2" for="star-2" title="Peut mieux faire" ></label>
+					<input class="star star-1" id="star-1" type="radio" name="star" value="5" checked="true"/><label class="star star-1" for="star-1" title="Nul"></label>
 					 
 				</div>
 							
@@ -48,22 +48,22 @@
 			
 			<!-- type ++ -->
 			<div>
-				<label for="message">Type de cuisine</label> <br/>
+				<label for="type">Type de cuisine</label> <br/>
 				<select>
-					  <option value="africaine">Africaine</option>
-					  <option value="amérique-du-nord">Amérique du Nord</option>
-					  <option value="amérique-du-sud">Amérique du Sud</option>
-					  <option value="chinoise">Chinoise</option>
-					  <option value="espagnole">Espagnole</option>
-					  <option value="europe-du-nord">Europe du Nord</option>
-					  <option value="europe-de-l-est">Europe de l'Est</option>
-					  <option value="française">Française</option>
-					  <option value="fruits-de-mer">Fruits de mer</option>
-					  <option value="gastronomique">Gastronomique</option>
-					  <option value="indienne">Indienne</option>
-					  <option value="italienne">Italienne</option>
-					  <option value="japonnaise">Japonnaise</option>
-					  <option value="orientale">Orientale</option>
+					  <option name="type" value="africaine">Africaine</option>
+					  <option name="type" value="amérique-du-nord">Amérique du Nord</option>
+					  <option name="type" value="amérique-du-sud">Amérique du Sud</option>
+					  <option name="type" value="chinoise">Chinoise</option>
+					  <option name="type" value="espagnole">Espagnole</option>
+					  <option name="type" value="europe-du-nord">Europe du Nord</option>
+					  <option name="type" value="europe-de-l-est">Europe de l'Est</option>
+					  <option name="type" value="française">Française</option>
+					  <option name="type" value="fruits-de-mer">Fruits de mer</option>
+					  <option name="type" value="gastronomique">Gastronomique</option>
+					  <option name="type" value="indienne">Indienne</option>
+					  <option name="type" value="italienne">Italienne</option>
+					  <option name="type" value="japonnaise">Japonnaise</option>
+					  <option name="type" value="orientale">Orientale</option>
 				</select>
 			</div>
 			
