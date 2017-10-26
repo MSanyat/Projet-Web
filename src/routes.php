@@ -22,8 +22,29 @@ $app->get('/Ajout', function (Request $request, Response $response, array $args)
     return $this->renderer->render($response, 'form.phtml', $args);
 });
 $app->post('/Ajout-Reussi', function(Request $request,Response $response,array $args) {
-	echo 'Ajout-Reussi';
-	return $this->renderer->render($response, 'index.phtml', $args);
+	$name = $request->getParam('name');
+	$location=$request->getParam('location');
+	$star=$request->getParam('star');
+	$type=$request->getParam('type');
+	$price=$request->getParam('price');
+	$review=$request->getParam('review');
+
+	
+	//connexion à la bdd
+$this->db;
+	
+	//ajout dans la bdd
+	$restaurant=new Restaurant;
+	$restaurant->name=$name;
+	$restaurant->location=$location;
+	$restaurant->rating=$star;
+	$restaurant->type=$type;
+	$restaurant->price=$price;
+	$restaurant->review=$review;
+	$restaurant->save();
+	echo 'Enregistrement effectué'; 
+
+	//return $this->renderer->render($response, 'index.phtml', $args); 
 });
 
 
@@ -51,6 +72,7 @@ $app->post('/Ajout-Reussi', function(Request $request,Response $response,array $
         $table->longText('review');
 		$table->timestamps();
     });
+		echo 'Création de la base';
 	});
 
 
