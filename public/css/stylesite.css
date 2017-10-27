@@ -10,6 +10,8 @@ body {
 	text-align: center;
 	color: #aaa;
 	font-size: 18px;
+	
+	background: #602b2b;
 }
 
 h1 {
@@ -26,29 +28,59 @@ h2{
 	
 	padding-top: 10px;
 	font-size: 20px;
+	color: #602b2b;
+}
+
+
+
+
+.item_resto{
+	
+	background: #bb946d;
+	margin:10px;
+	color:black;
+	
+	
+	
+	
+}
+
+.item_resto h2{
+	text-align:center;
+	
+	
+	
+	
+}
+
+
+
+
+.euro{
+  content: '\f0f5';/** f005 pour des stars**/
+  color: #FD4;
 }
 
 
 /*********************** FORM ****************************/
 
-#body-form{
-	background: #602b2b;
-}
-
-
-#body-form .form-div{ 
+.bg-picture{ 
 	/** background: url("../../public/img/bg-resto-1.jpg"); **/
 	background: url("../img/bg-resto-1.jpg");
 	padding-top:20px;
 }
 
-
-#body-form h2{
-	color: #602b2b;
+.bg-white{
+	
+	background:white;
+	padding-top:20px;
+	
 }
 
 
-form{
+
+
+#body-form form{
     /* Pour le centrer dans la page */
     margin: 0 auto;
     width: 400px;
@@ -60,6 +92,27 @@ form{
 	background:white;
 	
 }
+
+.round_box{
+	    /* Pour le centrer dans la page */
+    margin: 0 auto;
+	height:100%;
+	
+	/* Pour voir les limites du formulaire */
+    padding: 1em;
+    border: 1px solid #CCC;
+    border-radius: 1em;
+	
+	
+}
+
+
+
+
+
+
+
+
 
 form div + div {
     margin-top: 1em;
@@ -104,7 +157,6 @@ textarea {
 }
 
 .button {
-    background-color: #CCC;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -114,10 +166,21 @@ textarea {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+	background-color: #87c540;
 }
 
 
 
+.button:disabled {
+    background-color: #CCC;
+}
+
+
+
+.button:hover {
+    background-color: #ffffff;
+	color:#87c540;
+}
 
 
 

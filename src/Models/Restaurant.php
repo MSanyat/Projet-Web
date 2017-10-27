@@ -13,6 +13,7 @@ class Restaurant extends Eloquent {
 	protected $table = 'restaurant';
 	
 	protected $name;
+	protected $id;
 	protected $location;
 	protected $price;
 	protected $rating;
