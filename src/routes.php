@@ -75,7 +75,7 @@ $app->get('/installbdd',function(Request $request, Response $response){
 
 	
 	
-/////////////////////// Formulaire d'ajout de review
+/////////////////////// Show all
 
 $app->get('/show-all', function (Request $request, Response $response, array $args) {
    
@@ -93,15 +93,86 @@ $app->get('/show-all', function (Request $request, Response $response, array $ar
     return $this->renderer->render($response, 'show-all.phtml', ['restaurants' => $restaurants]);
 });
 
+////////////////////////// show One restaurant
+$app->get("/restaurant/[{id}]", function(Request $request,Response $response,array $args){
+	
+	$this->db;
+	$id = $args['id'];
+	$restaurant = Restaurant::findOrFail($id);
+	return $this->renderer->render ($response, "restaurant.phtml", ["restaurant" => $restaurant]);
 
-/*
-$app->get("/car/[{id}]", function(){
-$id = $args['id'];
-$car = Car::getById($id);
-return ... (&response, "view.phtml",, ["car" => $car]);
+});
 
-}
-*/
+
+
+
+////////////////////////// Edit One restaurant
+$app->get("/edit/[{id}]", function(Request $request,Response $response,array $args){
+	
+	$this->db;
+	$id = $args['id'];
+	$restaurant = Restaurant::findOrFail($id);
+	return $this->renderer->render ($response, "edit.phtml", ["restaurant" => $restaurant]);
+
+});
+
+
+
+
+////////////////////// succès d'un edit, on retourne sur le restaurant modifié
+$app->post('/edit-success', function(Request $request,Response $response,array $args) {
+	$name = $request->getParam('name');
+	$location=$request->getParam('location');
+	$star=$request->getParam('star');
+	$type=$request->getParam('type');
+	$price=$request->getParam('price');
+	$review=$request->getParam('review');
+	$id=$request->getParam('id');
+
+	
+	//connexion à la bdd
+	$this->db;
+	
+	//update dans la bdd
+	$restaurant= Restaurant::findOrFail($id);
+	$restaurant->name=$name;
+	$restaurant->location=$location;
+	$restaurant->rating=$star;
+	$restaurant->type=$type;
+	$restaurant->price=$price;
+	$restaurant->review=$review;
+	
+	$restaurant->save();
+	//echo 'Enregistrement effectué'; 
+
+	return $this->renderer->render($response, 'restaurant.phtml', ["restaurant" => $restaurant]); 
+});
+
+
+
+
+////////////////////////// delete One restaurant
+$app->post("/delete-success", function(Request $request,Response $response,array $args){
+	
+	$this->db;
+	
+	$id=$request->getParam('id');
+	//$id = $args['id'];
+	$restaurant = Restaurant::findOrFail($id);
+	$restaurant->delete();
+	
+	
+	//$restaurants = Restaurant::all();
+		
+	
+	
+	return $this->renderer->render ($response, "delete-success.phtml", $args /*["restaurants" => $restaurants]*/);
+
+});
+
+
+
+
 
 ////////////////////// ajout d'une route test
 $app->get('/test',function(Request $request, Response $response){

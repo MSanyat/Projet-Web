@@ -21,5 +21,6 @@ class Restaurant extends Eloquent {
 	protected $review;
 	
 	
+	
 
 }

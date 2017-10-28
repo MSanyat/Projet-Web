@@ -17,20 +17,36 @@
 	
         <h1>Toutes les reviews de restaurants</h1>
 		
+						
+			<form method="get" action="/ajout">
+				<input type="submit" value="Ajouter une expérience"  class="button"  />
+			</form>
+		
 		<div class="round_box bg-picture">
 		
 				<?php
 				
-					//affiche chaque item restaurant 
-					foreach ($restaurants as $restaurant) {
-						$id = $restaurant->id;				
-						$name = $restaurant->name;	
-						$location = $restaurant->location;	
-						$price = $restaurant->price;	
-						$rating = $restaurant->rating;	
-						$type = $restaurant->type;	
-						$review = $restaurant->review;	
+					if(count($restaurants) == 0){
+				?>
+						<div class="item_resto"> 
+							<p>Vous n'avez pas encore enregistré d'expériences restaurants.</p>
+						</div>
 						
+				<?php		
+					}
+					
+					else{
+					
+						//affiche chaque item restaurant 
+						foreach ($restaurants as $restaurant) {
+							$id = $restaurant->id;				
+							$name = $restaurant->name;	
+							$location = $restaurant->location;	
+							$price = $restaurant->price;	
+							$rating = $restaurant->rating;	
+							$type = $restaurant->type;	
+							$review = $restaurant->review;	
+							
 						
 						
 									
@@ -69,34 +85,13 @@
 							
 							
 							
-							
-							<p>Adresse : <?=$location ?></p>
-							
-							<!--Prix-->
-							
-							<p>Prix : 
-								<?php
-									$colorMap[1] = '#98d728'; //green
-									$colorMap[2] = '#ffe13b'; //orange
-									$colorMap[3] = '#fd1100'; //red
-
-									for ($x = 0; $x < $price; $x++) {
-										echo  "<span style=\"color: $colorMap[$price] ;\"><i class=\"fa fa-eur\" aria-hidden=\"true\"></i></span>";
-									} 
-																
-								?>
-							</p>
-							
-							
-							
-							
-							<p>Avis : <?=$review ?></p>
-							<form method="get" action="/ajout">
+							<form method="get" action="/restaurant/<?=$id?>">
 								<input type="submit" value="Voir"  class="button"  />
 							</form>
 						</div>
 				<?php
 						
+						}
 					}
 				?>
 

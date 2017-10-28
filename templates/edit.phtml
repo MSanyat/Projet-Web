@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Modifier l'expérience</title>
+        <link href='../css/stylesite.css' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
+
+    </head>
+	
+	
+    <body id="body-form">
+        <h1>Modifier l'expérience</h1>
+		
+		<div class="form-div bg-picture" >
+		
+			<?php
+				
+					//récupère 1 restaurant 
+					
+						$id = $restaurant->id;				
+						$name = $restaurant->name;	
+						$location = $restaurant->location;	
+						$price = $restaurant->price;	
+						$rating = $restaurant->rating;	
+						$type = $restaurant->type;	
+						$review = $restaurant->review;	
+						
+			?>
+				
+		
+		
+		
+		
+			<form action="/edit-success" method="post" >
+			
+			<h2>Modifier l'expérience chez <?=$name?></h2>
+			
+			
+			
+				<!-- nom -->
+				<div>
+					<label for="name">Nom du restaurant</label>
+					<input type="text" id="name" name="name" value="<?=$name?>"/>
+				</div>
+				
+				
+				
+				<!-- localisation -->
+				<div>
+					<label for="location">Adresse</label>
+					<input type="text" id="location" name="location"value="<?=$location?>" />
+				</div>
+				
+				
+				<!-- note ++ -->
+				<div>
+				
+				
+					<label for="star">Note</label> 
+					<div class="stars">
+						<input class="star star-5" id="star-5" type="radio" name="star" value="5" /><label class="star star-5" for="star-5"  title="Excellent !"></label>
+						<input class="star star-4" id="star-4" type="radio" name="star" value="4"   /><label class="star star-4" for="star-4"  title="Bon"></label>
+						<input class="star star-3" id="star-3" type="radio" name="star" value="3"  /><label class="star star-3" for="star-3" title="Pas mal"></label>
+						<input class="star star-2" id="star-2" type="radio" name="star" value="2"   /><label class="star star-2" for="star-2" title="Peut mieux faire" ></label>
+						<input class="star star-1" id="star-1" type="radio" name="star" value="1"  /><label class="star star-1" for="star-1" title="Nul"></label>
+						 
+					</div>
+								
+					<!-- pre check l'icone correspondant à la note -->
+					<script type="text/javascript">
+						var idCheckedRating = "star-";
+						idCheckedRating = idCheckedRating+"<?php echo $rating; ?>";
+						document.getElementById(idCheckedRating).checked = true;
+					</script>
+					
+				</div>
+				
+				<!-- type ++ -->
+				<div>
+					<label for="type">Type de cuisine</label> <br/>
+					<select name="type">
+						  <option name="type" value="africaine" id="africaine">Africaine</option>
+						  <option name="type" value="amérique-du-nord" id="amérique-du-nord" >Amérique du Nord</option>
+						  <option name="type" value="amérique-du-sud" id="amérique-du-sud">Amérique du Sud</option>
+						  <option name="type" value="chinoise" id="chinoise">Chinoise</option>
+						  <option name="type" value="espagnole" id="espagnole">Espagnole</option>
+						  <option name="type" value="europe-du-nord" id="europe-du-nord">Europe du Nord</option>
+						  <option name="type" value="europe-de-l-est" id="europe-de-l-est">Europe de l'Est</option>
+						  <option name="type" value="française" id="française">Française</option>
+						  <option name="type" value="fruits-de-mer" id="fruits-de-mer">Fruits de mer</option>
+						  <option name="type" value="gastronomique" id="gastronomique">Gastronomique</option>
+						  <option name="type" value="indienne" id="indienne">Indienne</option>
+						  <option name="type" value="italienne" id="italienne">Italienne</option>
+						  <option name="type" value="japonnaise" id="japonnaise">Japonnaise</option>
+						  <option name="type" value="orientale" id="orientale">Orientale</option>
+					</select>
+					
+					<!-- pre check l'option correspondant au type -->
+					<script type="text/javascript">
+						var idCheckedType = "<?php echo $type; ?>";
+						document.getElementById(idCheckedType).selected = true;
+					</script>					
+					
+				</div>
+				
+				
+				
+				<!-- prix ++ -->
+				<div>
+					<label for="courriel">Prix</label> <br/>
+						<div class="prices">
+							<input class="price price-3" id="price-3" type="radio" name="price" value="3" /><label class="price price-3" for="price-3"  title="Cher"></label>
+							<input class="price price-2" id="price-2" type="radio" name="price" value="2" /><label class="price price-2" for="price-2"  title="Moyen"></label>
+							<input class="price price-1" id="price-1" type="radio" name="price" value="1"  checked="true"/><label class="price price-1" for="price-1" title="Pas cher"></label>
+						</div>
+						
+						
+					<!-- pre check l'icone correspondant au prix -->
+					<script type="text/javascript">
+						var idChecked= "price-";
+						idChecked = idChecked+"<?php echo $price; ?>";
+						document.getElementById(idChecked).checked = true;
+					</script>
+								
+				</div>
+				
+				
+				
+				
+				<!-- avis -->
+				<div>
+					<label for="review">Avis</label>
+					<textarea id="review" name="review" ><?=$review?></textarea>
+				</div>
+				
+				<input type="hidden" name="id" value="<?=$id?>" >
+				
+				<div >
+					<button type="submit" class="button">Valider la modification</button>
+				</div>
+				
+			
+			</form>
+			
+			
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+
+    </body>
+</html>
