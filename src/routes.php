@@ -77,7 +77,7 @@ $app->get('/installbdd',function(Request $request, Response $response){
 
 	
 	
-/////////////////////// Show all
+/////////////////////// Show all 
 
 $app->get('/show-all', function (Request $request, Response $response, array $args) {
    
@@ -89,11 +89,11 @@ $app->get('/show-all', function (Request $request, Response $response, array $ar
 		foreach ($restaurants as $restaurant) {
 			//echo $restaurant->name;
 		}
-		
    
     // Render view, passe la liste des restos en argument
     return $this->renderer->render($response, 'show-all.phtml', ['restaurants' => $restaurants]);
 });
+
 
 ////////////////////////// show One restaurant
 $app->get("/restaurant/[{id}]", function(Request $request,Response $response,array $args){
@@ -192,17 +192,18 @@ $app->get('/resto',function(Request $request, Response $response) {
 
 
 
-/////////////////////// main de slim par défaut
-/**$app->get('/[{name}]', function (Request $request, Response $response, array $args) {
-	
+/////////////////////// Redirection par défaut
+$app->get('/[{name}]', function (Request $request, Response $response, array $args) {
+/**	
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
 	
 
 	
     // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args);
-}); **/
+    return $this->renderer->render($response, 'index.phtml', $args); **/
+	return $response->withRedirect('/show-all');
+}); 
 
 
 
