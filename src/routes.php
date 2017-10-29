@@ -10,41 +10,43 @@ use Slim\Http\Response;
 
 // Routes
 
-/////////////////////// Formulaire d'ajout de review
-$app->get('/ajout', function (Request $request, Response $response, array $args) {
-   
-    // Render index view
-    return $this->renderer->render($response, 'form.phtml', $args);
-});
+
 
 
 ////////////////////// Traitement de l'ajout de la review
 $app->post('/ajout-reussi', function(Request $request,Response $response,array $args) {
-	$name = $request->getParam('name');
-	$location=$request->getParam('location');
-	$star=$request->getParam('star');
-	$type=$request->getParam('type');
-	$price=$request->getParam('price');
-	$review=$request->getParam('review');
+	if (!empty($request->getParam('name')))	$name = strip_tags($request->getParam('name'));
+	if (!empty($request->getParam('location'))) $location=strip_tags($request->getParam('location'));
+	if (!empty($request->getParam('star'))) $star=strip_tags($request->getParam('star'));
+	if (!empty($request->getParam('type'))) $type=strip_tags($request->getParam('type'));
+	if (!empty($request->getParam('price'))) $price=strip_tags($request->getParam('price'));
+	if (!empty($request->getParam('review'))) $review=strip_tags($request->getParam('review'));
 
-	
-	//connexion à la bdd
-	$this->db;
-	
-	//ajout dans la bdd
-	$restaurant=new Restaurant;
-	$restaurant->name=$name;
-	$restaurant->location=$location;
-	$restaurant->rating=$star;
-	$restaurant->type=$type;
-	$restaurant->price=$price;
-	$restaurant->review=$review;
-	$restaurant->save();
-	//echo 'Enregistrement effectué'; 
+if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !empty($price) && !empty($review)) {	
+		//connexion à la bdd
+		$this->db;
+		
+		//ajout dans la bdd
+		$restaurant=new Restaurant;
+		$restaurant->name=$name;
+		$restaurant->location=$location;
+		$restaurant->rating=$star;
+		$restaurant->type=$type;
+		$restaurant->price=$price;
+		$restaurant->review=$review;
+		$restaurant->save();
+		//echo 'Enregistrement effectué'; 
 
-	return $this->renderer->render($response, 'add-success.phtml', $args); 
+		return $this->renderer->render($response, 'add-success.phtml', $args); 
+	}
+	else return $this->renderer->render($response, 'add-error.phtml', $args); 
 });
 
+/////////////////////// Formulaire d'ajout de review
+
+$app->get('/add',function(Request $request, Response $response,array $args){
+	return $this->renderer->render($response,'form.phtml',$args);
+}); 
 
 ////////////////////// route création bdd
 $app->get('/installbdd',function(Request $request, Response $response){
@@ -191,7 +193,7 @@ $app->get('/resto',function(Request $request, Response $response) {
 
 
 /////////////////////// main de slim par défaut
-$app->get('/[{name}]', function (Request $request, Response $response, array $args) {
+/**$app->get('/[{name}]', function (Request $request, Response $response, array $args) {
 	
     // Sample log message
     $this->logger->info("Slim-Skeleton '/' route");
@@ -200,7 +202,7 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
 	
     // Render index view
     return $this->renderer->render($response, 'index.phtml', $args);
-});
+}); **/
 
 
 
