@@ -74,19 +74,17 @@
 							
 							<p>Avis : <?=$review ?></p>
 							
+				
+							<button class="button"> <a href="/edit/<?=$id?>"> Modifier </a></button>
+							<button class="button"> <a href="/show-all"> Retour aux restaurants </a></button>
+							<button class="button"> <a href="/delete"> Supprimer </a></button>
 							
-							<form method="get" action="/edit/<?=$id?>">
-								<input type="submit" value="Modifier"  class="button"  />
-							</form>
 							
-							<form method="post" action="/delete-success">
 							
-								<input type="hidden" name="id" value="<?=$id?>" >
-								<input type="submit" value="Supprimer"  class="button"  />
-							</form>		
-							<form method="get" action="/show-all">
-								<input type="submit" value="Retour aux restaurants"  class="button"  />
-							</form>
+							
+							
+							
+					
 
 							
 		

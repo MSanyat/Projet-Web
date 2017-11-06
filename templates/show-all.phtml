@@ -18,10 +18,8 @@
         <h1>Toutes les reviews de restaurants</h1>
 		
 						
-			<form method="get" action="/add">
-				<input type="submit" value="Ajouter une expérience"  class="button"  />
-			</form>
 		
+			<button class="button"> <a href="/add"> Ajouter une expérience </a></button>
 		<div class="round_box bg-picture">
 		
 				<?php
@@ -83,11 +81,9 @@
 							
 							<p>Type de cuisine : <?=str_replace('-',' ',$type) ?></p>
 							
+							<button class="button"> <a href="/restaurant/<?=$id?>"> Voir </a></button>
 							
 							
-							<form method="get" action="/restaurant/<?=$id?>">
-								<input type="submit" value="Voir"  class="button"  />
-							</form>
 						</div>
 				<?php
 						

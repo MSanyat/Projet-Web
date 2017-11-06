@@ -147,14 +147,15 @@ $app->post('/edit-success', function(Request $request,Response $response,array $
 	$restaurant->save();
 	//echo 'Enregistrement effectué'; 
 
-	return $this->renderer->render($response, 'restaurant.phtml', ["restaurant" => $restaurant]); 
+	//return $this->renderer->render($response, 'restaurant.phtml', ["restaurant" => $restaurant]); 
+	return $response->withRedirect('/restaurant/'.$id);
 });
 
 
 
 
 ////////////////////////// delete One restaurant
-$app->post("/delete-success", function(Request $request,Response $response,array $args){
+$app->post("/delete", function(Request $request,Response $response,array $args){
 	
 	$this->db;
 	
