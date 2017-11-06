@@ -2,17 +2,20 @@
 <html>
     <head>
         <meta charset="utf-8"/>
+		 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Modifier l'expérience</title>
-        <link href='../css/stylesite.css' rel='stylesheet' type='text/css'>
+		<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href='../css/stylesheet2.css' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
 
     </head>
 	
 	
-    <body id="body-form">
+    <body>
         <h1>Modifier l'expérience</h1>
 		
-		<div class="form-div bg-picture" >
+		<div >
 		
 			<?php
 				
@@ -32,10 +35,15 @@
 		
 		
 		
-			<form action="/edit-success" method="post" >
+			<form action="/edit-success" method="post" class="panel panel-warning" >
 			
-			<h2>Modifier l'expérience chez <?=$name?></h2>
+				<div  class="panel-heading">
+					<h2>Modifier l'expérience chez <?=$name?></h2>
+				
+				</div>
 			
+			
+				<div  class="panel-body">
 			
 			
 				<!-- nom -->
@@ -57,7 +65,7 @@
 				<div>
 				
 				
-					<label for="star">Note</label> 
+					<label for="star">Note</label> <br/>
 					<div class="stars">
 						<input class="star star-5" id="star-5" type="radio" name="star" value="5" /><label class="star star-5" for="star-5"  title="Excellent !"></label>
 						<input class="star star-4" id="star-4" type="radio" name="star" value="4"   /><label class="star star-4" for="star-4"  title="Bon"></label>
@@ -66,14 +74,15 @@
 						<input class="star star-1" id="star-1" type="radio" name="star" value="1"  /><label class="star star-1" for="star-1" title="Nul"></label>
 						 
 					</div>
-								
-					<!-- pre check l'icone correspondant à la note -->
-					<script type="text/javascript">
-						var idCheckedRating = "star-";
-						idCheckedRating = idCheckedRating+"<?php echo $rating; ?>";
-						document.getElementById(idCheckedRating).checked = true;
-					</script>
 					
+					<!-- pre check l'icone correspondant au prix -->
+					<script type="text/javascript">
+						var idChecked= "star-";
+						idChecked = idChecked+"<?php echo $rating; ?>";
+						document.getElementById(idChecked).checked = true;
+					</script>
+								
+								
 				</div>
 				
 				<!-- type ++ -->
@@ -95,12 +104,6 @@
 						  <option name="type" value="japonnaise" id="japonnaise">Japonnaise</option>
 						  <option name="type" value="orientale" id="orientale">Orientale</option>
 					</select>
-					
-					<!-- pre check l'option correspondant au type -->
-					<script type="text/javascript">
-						var idCheckedType = "<?php echo $type; ?>";
-						document.getElementById(idCheckedType).selected = true;
-					</script>					
 					
 				</div>
 				
@@ -136,8 +139,10 @@
 				
 				<input type="hidden" name="id" value="<?=$id?>" >
 				
-				<div >
-					<button type="submit" class="button">Valider la modification</button>
+				<div  >
+					<button type="submit" class="btn btn-lg btn-success form-button">Valider la modification</button>
+				</div>
+				
 				</div>
 				
 			

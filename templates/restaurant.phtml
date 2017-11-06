@@ -4,15 +4,20 @@
 	<!-- 	-->
     <head>
         <meta charset="utf-8"/>
+		 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mon experience chez...</title>
-        <link href='../css/stylesite.css' rel='stylesheet' type='text/css'>
+		<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href='../css/stylesheet2.css' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
 
     </head>
-    <body>
+    <body class = "body">
+	
+	
         <h1>Mon experience chez...</h1>
 		
-		<div class="round_box item_resto">
+		<div class="panel panel-warning">
 		
 			<?php
 				
@@ -27,23 +32,27 @@
 						$review = $restaurant->review;	
 						
 			?>
-				
-			<h2><?=$name?></h2>
 			
+			<div class="panel-heading">			
+				<h2><?=$name?></h2>
+			</div>
+			
+			
+			<div class="panel-body">
 							
 							<!--Note-->
 							
 							<p> 
 							
 								<?php
-									$colorMap[1] = '#fd1100'; //red
-									$colorMap[2] = '#ff9622'; 
+									$colorMap[1] = '#ffe13b'; //red
+									$colorMap[2] = '#ffe13b'; 
 									$colorMap[3] = '#ffe13b'; 
-									$colorMap[4] = '#98d786'; 
-									$colorMap[5] = '#98d728'; //green 
+									$colorMap[4] = '#ffe13b'; 
+									$colorMap[5] = '#ffe13b'; //green 
 
 									for ($x = 0; $x < $rating; $x++) {
-										echo  "<span style=\"color: $colorMap[$rating] ;\"><i class=\"fa fa-star fa-2x\" aria-hidden=\"true\"></i></span>";
+										echo  "<span style=\"color: $colorMap[$rating] ;margin-right:15px;\"><i class=\"fa fa-cutlery fa-2x\" aria-hidden=\"true\"></i></span>";
 									} 
 																
 								?>
@@ -75,13 +84,13 @@
 							<p>Avis : <?=$review ?></p>
 							
 				
-							<button class="button"> <a href="/edit/<?=$id?>"> Modifier </a></button>
-							<button class="button"> <a href="/show-all"> Retour aux restaurants </a></button>
-							<button class="button"> <a href="/delete"> Supprimer </a></button>
+							<button class="btn btn-lg btn-success"> <a href="/edit/<?=$id?>"> Modifier </a></button>
+							<button class="btn btn-lg btn-success"> <a href="/show-all"> Retour aux restaurants </a></button>
+							<button class="btn btn-lg btn-success"> <a href="/delete"> Supprimer </a></button>
 							
 							
 							
-							
+			</div>
 							
 							
 					

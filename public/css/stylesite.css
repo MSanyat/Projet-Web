@@ -8,10 +8,15 @@ body {
 	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-align: center;
-	color: #aaa;
+	color: #ffa;
 	font-size: 18px;
+	background-color: #ffffff;
 	
-	background: #602b2b;
+}
+
+body.body{
+	
+	background:#ffffff;
 }
 
 h1 {
@@ -36,7 +41,6 @@ h2{
 
 .item_resto{
 	
-	background: #bb946d;
 	margin:10px;
 	color:black;
 	

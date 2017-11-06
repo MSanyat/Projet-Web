@@ -1,98 +1,106 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8"/>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Ajout d'une expérience restaurant</title>
-        <link href='css/stylesite.css' rel='stylesheet' type='text/css'>
-
+		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href='css/stylesheet2.css' rel='stylesheet' type='text/css'>
     </head>
-    <body id="body-form">
+    <body >
         <h1>Formulaire</h1>
 		
-		<div class="form-div bg-picture" >
+		<div >
 		
 		
-		<form action="/ajout-reussi" method="post" >
-		
-        <h2>Ajout d'une expérience au restaurant de mon choix.</h2>
-		
-			<!-- nom -->
-			<div>
-				<label for="name">Nom du restaurant</label>
-				<input type="text" id="name" name="name"/>
+		<form action="/ajout-reussi" method="post" class="panel panel-warning">
+			
+			<div class = "panel-heading">
+				<h2>Ajout d'une expérience au restaurant de mon choix.</h2>
+				
 			</div>
 			
+			<div class="panel-body">
 			
-			
-			<!-- localisation -->
-			<div>
-				<label for="location">Adresse</label>
-				<input type="text" id="location" name="location"/>
-			</div>
-			
-			
-			<!-- note ++ -->
-			<div>
-				<label for="courriel">Note</label> 
-				<div class="stars">
-					<input class="star star-5" id="star-5" type="radio" name="star" value="5"/><label class="star star-5" for="star-5"  title="Excellent !"></label>
-					<input class="star star-4" id="star-4" type="radio" name="star" value="4"/><label class="star star-4" for="star-4"  title="Bon"></label>
-					<input class="star star-3" id="star-3" type="radio" name="star" value="3"/><label class="star star-3" for="star-3" title="Pas mal"></label>
-					<input class="star star-2" id="star-2" type="radio" name="star" value="2"/><label class="star star-2" for="star-2" title="Peut mieux faire" ></label>
-					<input class="star star-1" id="star-1" type="radio" name="star" value="1" checked="true"/><label class="star star-1" for="star-1" title="Nul"></label>
-					 
+				<!-- nom -->
+				<div>
+					<label for="name">Nom du restaurant</label>
+					<input type="text" id="name" name="name"/>
 				</div>
-							
-			
-			</div>
-			
-			<!-- type ++ -->
-			<div>
-				<label for="type">Type de cuisine</label> <br/>
-				<select name="type">
-					  <option name="type" value="africaine">Africaine</option>
-					  <option name="type" value="amérique-du-nord">Amérique du Nord</option>
-					  <option name="type" value="amérique-du-sud">Amérique du Sud</option>
-					  <option name="type" value="chinoise">Chinoise</option>
-					  <option name="type" value="espagnole">Espagnole</option>
-					  <option name="type" value="europe-du-nord">Europe du Nord</option>
-					  <option name="type" value="europe-de-l-est">Europe de l'Est</option>
-					  <option name="type" value="française">Française</option>
-					  <option name="type" value="fruits-de-mer">Fruits de mer</option>
-					  <option name="type" value="gastronomique">Gastronomique</option>
-					  <option name="type" value="indienne">Indienne</option>
-					  <option name="type" value="italienne">Italienne</option>
-					  <option name="type" value="japonnaise">Japonnaise</option>
-					  <option name="type" value="orientale">Orientale</option>
-				</select>
-			</div>
-			
-			
-			
-			<!-- prix ++ -->
-			<div>
-				<label for="courriel">Prix</label> <br/>
-					<div class="prices">
-						<input class="price price-3" id="price-3" type="radio" name="price" value="3" /><label class="price price-3" for="price-3"  title="Cher"></label>
-						<input class="price price-2" id="price-2" type="radio" name="price" value="2" /><label class="price price-2" for="price-2"  title="Moyen"></label>
-						<input class="price price-1" id="price-1" type="radio" name="price" value="1"  checked="true"/><label class="price price-1" for="price-1" title="Pas cher"></label>
+				
+				
+				
+				<!-- localisation -->
+				<div>
+					<label for="location">Adresse</label>
+					<input type="text" id="location" name="location"/>
+				</div>
+				
+				
+				<!-- note ++ -->
+				<div>
+					<label for="courriel">Note</label> <br/>
+					<div class="stars">
+						<input class="star star-5" id="star-5" type="radio" name="star" value="5"/><label class="star star-5" for="star-5"  title="Excellent !"></label>
+						<input class="star star-4" id="star-4" type="radio" name="star" value="4"/><label class="star star-4" for="star-4"  title="Bon"></label>
+						<input class="star star-3" id="star-3" type="radio" name="star" value="3"/><label class="star star-3" for="star-3" title="Pas mal"></label>
+						<input class="star star-2" id="star-2" type="radio" name="star" value="2"/><label class="star star-2" for="star-2" title="Peut mieux faire" ></label>
+						<input class="star star-1" id="star-1" type="radio" name="star" value="1" checked="true"/><label class="star star-1" for="star-1" title="Nul"></label>
+						 
 					</div>
-							
-			</div>
-			
-			
-			
-			
-			<!-- avis -->
-			<div>
-				<label for="review">Avis</label>
-				<textarea id="review" name="review" ></textarea>
-			</div>
-			
-			<div >
-				<button type="submit" class="button">Ajouter la review</button>
-			</div>
-			
+								
+				
+				</div>
+				
+				<!-- type ++ -->
+				<div>
+					<label for="type">Type de cuisine</label> <br/>
+					<select name="type">
+						  <option name="type" value="africaine">Africaine</option>
+						  <option name="type" value="amérique-du-nord">Amérique du Nord</option>
+						  <option name="type" value="amérique-du-sud">Amérique du Sud</option>
+						  <option name="type" value="chinoise">Chinoise</option>
+						  <option name="type" value="espagnole">Espagnole</option>
+						  <option name="type" value="europe-du-nord">Europe du Nord</option>
+						  <option name="type" value="europe-de-l-est">Europe de l'Est</option>
+						  <option name="type" value="française">Française</option>
+						  <option name="type" value="fruits-de-mer">Fruits de mer</option>
+						  <option name="type" value="gastronomique">Gastronomique</option>
+						  <option name="type" value="indienne">Indienne</option>
+						  <option name="type" value="italienne">Italienne</option>
+						  <option name="type" value="japonnaise">Japonnaise</option>
+						  <option name="type" value="orientale">Orientale</option>
+					</select>
+				</div>
+				
+				
+				
+				<!-- prix ++ -->
+				<div>
+					<label for="courriel">Prix</label> <br/>
+						<div class="prices">
+							<input class="price price-3" id="price-3" type="radio" name="price" value="3" /><label class="price price-3" for="price-3"  title="Cher"></label>
+							<input class="price price-2" id="price-2" type="radio" name="price" value="2" /><label class="price price-2" for="price-2"  title="Moyen"></label>
+							<input class="price price-1" id="price-1" type="radio" name="price" value="1"  checked="true"/><label class="price price-1" for="price-1" title="Pas cher"></label>
+						</div>
+								
+				</div>
+				
+				
+				
+				
+				<!-- avis -->
+				<div>
+					<label for="review">Avis</label>
+					<textarea id="review" name="review" ></textarea>
+				</div>
+				
+				<div >
+					<button type="submit" class="btn btn-lg btn-success form-button">Ajouter la review</button>
+				</div>
+				
+				</div>
 		
 		</form>
 		

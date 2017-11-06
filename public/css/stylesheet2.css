@@ -8,12 +8,77 @@ body {
 	width: 100%;
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 	text-align: center;
-	color: #aaa;
+	color: #444;
 	font-size: 18px;
+	background-color: white;
+	
 }
 
+body.body{
+	
+	background:#ffffff;
+}
+
+a{
+	
+	
+	color: #444;
+	
+}
+
+.btn-success, .btn-success.focus, .btn-success:hover, .btn-success.active, .btn-success:active, .btn-success:link, .btn-success:visited, .btn-success:focus{
+	background:#fffad5;
+	border-color: #8a8a8a;
+	color : #444;
+	
+}
+
+.btn-success:hover{
+	background:#fffad5;
+	border-color: #8a8a8a;
+	
+	
+	
+}
+
+.btn-success:focus{
+	background:#fffad5;
+	border-color: #8a8a8a;
+	
+	
+	
+}
+
+.form-button{
+	margin-top:15px;
+	
+}
+
+.panel{
+	
+    /* Pour le centrer dans la page */
+    margin: 0 auto;
+    width: 400px;
+	display: inline-block;
+	
+	/* Pour voir les limites du formulaire */
+    border: 1px solid #CCC;
+    border-radius: 1em;
+	background:white;
+	padding:0;
+}
+
+
+.panel-warning > .panel-heading{
+	
+	background-color: #ffa98f;
+	border-radius:  1em 1em 0 0;
+	
+}
+
+
 h1 {
-	color: white;
+	color:  #444;
 	letter-spacing: -3px;
 	font-family: 'Lato', sans-serif;
 	font-size: 50px;
@@ -26,39 +91,76 @@ h2{
 	
 	padding-top: 10px;
 	font-size: 20px;
+	color: #602b2b;
+}
+
+
+
+
+.item_resto{
+	
+	margin:10px;
+	color:black;
+	
+	
+	
+	
+}
+
+.item_resto h2{
+	text-align:center;
+	
+	
+	
+	
+}
+
+
+
+
+.euro{
+  content: '\f0f5';/** f005 pour des stars**/
+  color: #FD4;
 }
 
 
 /*********************** FORM ****************************/
 
-#body-form{
-	background: #602b2b;
-}
-
-
-#body-form .form-div{ 
-	background: url("../../public/img/bg-resto-1.jpg");
+.bg-picture{ 
+	/** background: url("../../public/img/bg-resto-1.jpg"); **/
 	padding-top:20px;
 }
 
-
-#body-form h2{
-	color: #602b2b;
+.bg-white{
+	
+	background:white;
+	padding-top:20px;
+	
 }
 
 
-form{
-    /* Pour le centrer dans la page */
+
+
+.round_box{
+	    /* Pour le centrer dans la page */
     margin: 0 auto;
-    width: 400px;
-	display: inline-block;
+	height:100%;
+	
 	/* Pour voir les limites du formulaire */
     padding: 1em;
     border: 1px solid #CCC;
     border-radius: 1em;
-	background:white;
+	
 	
 }
+
+
+
+
+
+
+
+
 
 form div + div {
     margin-top: 1em;
@@ -103,7 +205,6 @@ textarea {
 }
 
 .button {
-    background-color: #CCC;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -113,10 +214,21 @@ textarea {
     font-size: 16px;
     margin: 4px 2px;
     cursor: pointer;
+	background-color: #87c540;
 }
 
 
 
+.button:disabled {
+    background-color: #CCC;
+}
+
+
+
+.button:hover {
+    background-color: #ffffff;
+	color:#87c540;
+}
 
 
 
@@ -154,27 +266,19 @@ input.price:checked ~ label.price:before {
 }
 
 input.star-5:checked ~ label.star:before{
-  color: #b4f830;
-  text-shadow: 0 0 5px #99ff77;
+  color: #ffe13b;
 }
 
 input.price-3:checked ~ label.price:before {
   color: #b4f830;
-  text-shadow: 0 0 2px #f55600;
 }
 
 
 
-input.star-1:checked ~ label.star:before { color: #fd1100; }
-input.star-2:checked ~ label.star:before { color: #ff9622; }
-input.star-3:checked ~ label.star:before { color: #ffe13b; }
-input.star-4:checked ~ label.star:before { color: #98d786; }
-input.star-5:checked ~ label.star:before { color: #98d728; }
+input.star-1:checked ~ label.star:before, input.star-2:checked ~ label.star:before , input.star-3:checked ~ label.star:before , input.star-4:checked ~ label.star:before, input.star-5:checked ~ label.star:before { color: #ffe13b; }
 
 
-input.price-1:checked ~ label.price:before  { color: #98d728; }
-input.price-2:checked ~ label.price:before  { color: #ffe13b; }
-input.price-3:checked ~ label.price:before  { color: #fd1100; }
+input.price-1:checked ~ label.price:before, input.price-2:checked ~ label.price:before , input.price-3:checked ~ label.price:before  { color: #ffe13b; }
 
 
 

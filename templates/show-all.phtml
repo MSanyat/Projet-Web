@@ -6,8 +6,12 @@
 
     <head>
         <meta charset="utf-8"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Afficher tout</title>
-        <link href='css/stylesite.css' rel='stylesheet' type='text/css'>
+        <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href='css/stylesheet2.css' rel='stylesheet' type='text/css'>
+		
 		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
     </head>
 	
@@ -19,15 +23,16 @@
 		
 						
 		
-			<button class="button"> <a href="/add"> Ajouter une expérience </a></button>
-		<div class="round_box bg-picture">
+			<button class="btn btn-lg btn-success"> <a href="/add"> Ajouter une expérience </a></button>
+			
+			<div class="round_box bg-picture">
 		
 				<?php
 				
 					if(count($restaurants) == 0){
 				?>
-						<div class="item_resto"> 
-							<p>Vous n'avez pas encore enregistré d'expériences restaurants.</p>
+						<div class="panel panel-danger" > 
+							<p class="panel-heading">Vous n'avez pas encore enregistré d'expériences restaurants.</p>
 						</div>
 						
 				<?php		
@@ -52,24 +57,28 @@
 				?>
 				
 			
-						<div class="item_resto"> 
-							<h2><?=$name?></h2>
+						<div class=" panel panel-warning"> 
+						
+							<div class="panel-heading">
+								<h2><?=$name?></h2>
+							
+							</div>
 							
 							
 							
 							<!--Note-->
-							
+							<div class="panel-body">
 							<p> 
 							
 								<?php
-									$colorMap[1] = '#fd1100'; //red
-									$colorMap[2] = '#ff9622'; 
-									$colorMap[3] = '#ffe13b'; 
-									$colorMap[4] = '#98d786'; 
-									$colorMap[5] = '#98d728'; //green 
+									$colorMap[1] = '#ffe13b'; //red
+									$colorMap[2] = '#ffe13b'; 
+									$colorMap[3] = '#ffe13b'; //yellow
+									$colorMap[4] = '#ffe13b'; 
+									$colorMap[5] = '#ffe13b'; //green 
 
 									for ($x = 0; $x < $rating; $x++) {
-										echo  "<span style=\"color: $colorMap[$rating] ;\"><i class=\"fa fa-star fa-2x\" aria-hidden=\"true\"></i></span>";
+										echo  "<span style=\"color: $colorMap[$rating] ;margin-right:15px;\"><i class=\"fa fa-cutlery fa-2x\" aria-hidden=\"true\"></i></span>";
 									} 
 																
 								?>
@@ -81,8 +90,8 @@
 							
 							<p>Type de cuisine : <?=str_replace('-',' ',$type) ?></p>
 							
-							<button class="button"> <a href="/restaurant/<?=$id?>"> Voir </a></button>
-							
+							<button class="btn btn-lg btn-success"> <a href="/restaurant/<?=$id?>"> Voir </a></button>
+							</div>
 							
 						</div>
 				<?php

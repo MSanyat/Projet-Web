@@ -39,9 +39,12 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 
 		return $this->renderer->render($response, 'add-success.phtml', $args); 
 	}
-	else return $this->renderer->render($response, 'add-error.phtml', $args); 
-});
-
+	else return $response->withRedirect('/add-error'.$id);
+	//return $this->renderer->render($response, 'add-error.phtml', $args); 
+});	
+$app->get('/add-error',function(Request $request, Response $response,array $args){
+	return $this->renderer->render($response,'add-error.phtml',$args);
+});	
 /////////////////////// Formulaire d'ajout de review
 
 $app->get('/add',function(Request $request, Response $response,array $args){
@@ -86,9 +89,7 @@ $app->get('/show-all', function (Request $request, Response $response, array $ar
 		$this->db;
 		$restaurants = Restaurant::all();
 		
-		foreach ($restaurants as $restaurant) {
-			//echo $restaurant->name;
-		}
+		
    
     // Render view, passe la liste des restos en argument
     return $this->renderer->render($response, 'show-all.phtml', ['restaurants' => $restaurants]);
