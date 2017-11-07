@@ -2,6 +2,7 @@
 
 use Slim\Http\Request;
 use Slim\Http\Response;
+use Slim\Http\UploadedFile;
 //use Slim\Route;
 
 //use App\User;
@@ -21,7 +22,20 @@ $app->post('/ajout-reussi', function(Request $request,Response $response,array $
 	if (!empty($request->getParam('type'))) $type=strip_tags($request->getParam('type'));
 	if (!empty($request->getParam('price'))) $price=strip_tags($request->getParam('price'));
 	if (!empty($request->getParam('review'))) $review=strip_tags($request->getParam('review'));
-
+	// récupérer l'image 
+	$uploadedFiles = $request->getUploadedFiles();
+	$uploadedFile = $uploadedFiles['file'];
+   if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+        $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
+		$basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
+		$filename = sprintf('%s.%0.8s', $basename, $extension);
+		$directory="img";
+		$uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
+     //   $response->write('uploaded ' . $filename . '<br/>');
+		$file=$directory . '/' . $filename;
+    }
+	else {$file='img/bg-resto-1.jpg';} 
+	
 if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !empty($price) && !empty($review)) {	
 		//connexion à la bdd
 		$this->db;
@@ -34,13 +48,14 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 		$restaurant->type=$type;
 		$restaurant->price=$price;
 		$restaurant->review=$review;
+		$restaurant->filepath=$file;
 		$restaurant->save();
 		//echo 'Enregistrement effectué'; 
 
 		return $this->renderer->render($response, 'add-success.phtml', $args); 
 	}
 	else return $response->withRedirect('/add-error'.$id);
-	//return $this->renderer->render($response, 'add-error.phtml', $args); 
+	//return $this->renderer->render($response, 'add-error.phtml', $args); **/
 });	
 $app->get('/add-error',function(Request $request, Response $response,array $args){
 	return $this->renderer->render($response,'add-error.phtml',$args);
@@ -72,6 +87,7 @@ $app->get('/installbdd',function(Request $request, Response $response){
         $table->integer('price')->default(1);
         $table->string('location');
         $table->longText('review');
+		$table->string('filepath');
 		$table->timestamps();
     });
 		echo 'Création de la base';
@@ -156,12 +172,12 @@ $app->post('/edit-success', function(Request $request,Response $response,array $
 
 
 ////////////////////////// delete One restaurant
-$app->post("/delete", function(Request $request,Response $response,array $args){
+$app->get("/delete/[{id}]", function(Request $request,Response $response,array $args){
 	
 	$this->db;
 	
-	$id=$request->getParam('id');
-	//$id = $args['id'];
+	//$id=$request->getParam('id');
+	$id = $args['id'];
 	$restaurant = Restaurant::findOrFail($id);
 	$restaurant->delete();
 	

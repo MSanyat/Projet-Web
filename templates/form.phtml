@@ -14,7 +14,7 @@
 		<div >
 		
 		
-		<form action="/ajout-reussi" method="post" class="panel panel-warning">
+		<form action="/ajout-reussi" method="post" class="panel panel-warning" enctype="multipart/form-data">
 			
 			<div class = "panel-heading">
 				<h2>Ajout d'une expérience au restaurant de mon choix.</h2>
@@ -95,13 +95,15 @@
 					<label for="review">Avis</label>
 					<textarea id="review" name="review" ></textarea>
 				</div>
-				
+				<div>
+					<label>Image: </label><br/>
+					<input type="file" name="file"/>
+				</div>				
 				<div >
 					<button type="submit" class="btn btn-lg btn-success form-button">Ajouter la review</button>
 				</div>
 				
 				</div>
-		
 		</form>
 		
 		

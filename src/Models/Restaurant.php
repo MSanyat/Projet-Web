@@ -19,6 +19,7 @@ class Restaurant extends Eloquent {
 	protected $rating;
 	protected $type;
 	protected $review;
+	protected $filepath;
 	
 	
 	

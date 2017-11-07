@@ -49,7 +49,7 @@
 							$rating = $restaurant->rating;	
 							$type = $restaurant->type;	
 							$review = $restaurant->review;	
-							
+							$filepath= $restaurant->filepath;
 						
 						
 									
@@ -68,6 +68,9 @@
 							
 							<!--Note-->
 							<div class="panel-body">
+							<p>
+								<img src="<?=$filepath?>" class="img-responsive thumbnail" />
+							</p>
 							<p> 
 							
 								<?php
