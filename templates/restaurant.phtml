@@ -29,7 +29,8 @@
 						$price = $restaurant->price;	
 						$rating = $restaurant->rating;	
 						$type = $restaurant->type;	
-						$review = $restaurant->review;	
+						$review = $restaurant->review;
+						$filepath = $restaurant->filepath;
 						
 			?>
 			
@@ -39,6 +40,9 @@
 			
 			
 			<div class="panel-body">
+							<p>
+								<img src="../<?=$filepath?>" class="img-responsive thumbnail" />
+							</p>
 							
 							<!--Note-->
 							
