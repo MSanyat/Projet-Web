@@ -55,7 +55,6 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 		return $this->renderer->render($response, 'add-success.phtml', $args); 
 	}
 	else return $response->withRedirect('/add-error'.$id);
-	//return $this->renderer->render($response, 'add-error.phtml', $args); **/
 });	
 $app->get('/add-error',function(Request $request, Response $response,array $args){
 	return $this->renderer->render($response,'add-error.phtml',$args);
@@ -153,12 +152,16 @@ $app->post('/edit-success', function(Request $request,Response $response,array $
 	$uploadedFile = $uploadedFiles['file'];
    if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
         $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
-		$basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
-		$filename = sprintf('%s.%0.8s', $basename, $extension);
-		$directory="img";
-		$uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
-     //   $response->write('uploaded ' . $filename . '<br/>');
-		$file=$directory . '/' . $filename;
+		// vérification de l'extension du fichier
+		 if ($extension =="jpg" || $extension =="png") {
+			$basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
+			$filename = sprintf('%s.%0.8s', $basename, $extension);
+			$directory="img";
+			$uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
+			$file=$directory . '/' . $filename;
+			echo $extension;
+		}
+		else return $response->withRedirect('/add-error');
     }
 	else {$file='img/bg-resto-1.jpg';} 
 	
