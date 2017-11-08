@@ -28,6 +28,7 @@
 						$rating = $restaurant->rating;	
 						$type = $restaurant->type;	
 						$review = $restaurant->review;	
+						$filepath= $restaurant->filepath;
 						
 			?>
 				
@@ -35,7 +36,7 @@
 		
 		
 		
-			<form action="/edit-success" method="post" class="panel panel-warning" >
+			<form action="/edit-success" method="post" class="panel panel-warning" enctype="multipart/form-data" >
 			
 				<div  class="panel-heading">
 					<h2>Modifier l'expérience chez <?=$name?></h2>
@@ -45,7 +46,9 @@
 			
 				<div  class="panel-body">
 			
-			
+				<p>
+								<img src="../<?=$filepath?>" class="img-responsive thumbnail" />
+				</p>
 				<!-- nom -->
 				<div>
 					<label for="name">Nom du restaurant</label>
@@ -138,7 +141,11 @@
 				</div>
 				
 				<input type="hidden" name="id" value="<?=$id?>" >
-				
+				<div>
+					<label>Image: </label><br/>
+					<input type="file" name="file"/>
+				</div>				
+				<div >
 				<div  >
 					<button type="submit" class="btn btn-lg btn-success form-button">Valider la modification</button>
 				</div>

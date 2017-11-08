@@ -147,7 +147,20 @@ $app->post('/edit-success', function(Request $request,Response $response,array $
 	$price=$request->getParam('price');
 	$review=$request->getParam('review');
 	$id=$request->getParam('id');
-
+	
+	// récupérer l'image 
+	$uploadedFiles = $request->getUploadedFiles();
+	$uploadedFile = $uploadedFiles['file'];
+   if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
+        $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
+		$basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
+		$filename = sprintf('%s.%0.8s', $basename, $extension);
+		$directory="img";
+		$uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
+     //   $response->write('uploaded ' . $filename . '<br/>');
+		$file=$directory . '/' . $filename;
+    }
+	else {$file='img/bg-resto-1.jpg';} 
 	
 	//connexion à la bdd
 	$this->db;
@@ -160,12 +173,13 @@ $app->post('/edit-success', function(Request $request,Response $response,array $
 	$restaurant->type=$type;
 	$restaurant->price=$price;
 	$restaurant->review=$review;
+	$restaurant->filepath=$file;
 	
 	$restaurant->save();
 	//echo 'Enregistrement effectué'; 
 
 	//return $this->renderer->render($response, 'restaurant.phtml', ["restaurant" => $restaurant]); 
-	return $response->withRedirect('/restaurant/'.$id);
+	return $response->withRedirect('/restaurant/'.$id); 
 });
 
 
