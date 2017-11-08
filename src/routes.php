@@ -15,7 +15,7 @@ use Slim\Http\UploadedFile;
 
 
 ////////////////////// Traitement de l'ajout de la review
-$app->post('/ajout-reussi', function(Request $request,Response $response,array $args) {
+$app->post('/add', function(Request $request,Response $response,array $args) {
 	if (!empty($request->getParam('name')))	$name = strip_tags($request->getParam('name'));
 	if (!empty($request->getParam('location'))) $location=strip_tags($request->getParam('location'));
 	if (!empty($request->getParam('star'))) $star=strip_tags($request->getParam('star'));
@@ -34,6 +34,7 @@ $app->post('/ajout-reussi', function(Request $request,Response $response,array $
      //   $response->write('uploaded ' . $filename . '<br/>');
 		$file=$directory . '/' . $filename;
     }
+	// sinon image par défaut
 	else {$file='img/bg-resto-1.jpg';} 
 	
 if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !empty($price) && !empty($review)) {	
