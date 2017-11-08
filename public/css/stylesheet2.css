@@ -26,13 +26,14 @@ a{
 	
 }
 
-.btn-success, .btn-success.focus, .btn-success:hover, .btn-success.active, .btn-success:active, .btn-success:link, .btn-success:visited, .btn-success:focus{
-	background:#fffad5;
-	border-color: #8a8a8a;
-	color : #444;
-	
-}
 
+.btn-success, .btn-success.focus, .btn-success:hover, .btn-success.active, .btn-success:active, .btn-success:link, .btn-success:visited, .btn-success:focus{
+	background:#fffad5 !important;
+	border-color: #8a8a8a !important;
+	color : #444 !important;
+	 
+}
+/**
 .btn-success:hover{
 	background:#fffad5;
 	border-color: #8a8a8a;
@@ -48,7 +49,7 @@ a{
 	
 	
 }
-
+**/
 .form-button{
 	margin-top:15px;
 	
