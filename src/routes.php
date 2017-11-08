@@ -138,7 +138,7 @@ $app->get("/edit/[{id}]", function(Request $request,Response $response,array $ar
 
 
 ////////////////////// succès d'un edit, on retourne sur le restaurant modifié
-$app->post('/edit-success', function(Request $request,Response $response,array $args) {
+$app->post('/edit', function(Request $request,Response $response,array $args) {
 	$name = $request->getParam('name');
 	$location=$request->getParam('location');
 	$star=$request->getParam('star');
@@ -161,7 +161,7 @@ $app->post('/edit-success', function(Request $request,Response $response,array $
 			$file=$directory . '/' . $filename;
 			echo $extension;
 		}
-		else return $response->withRedirect('/add-error');
+		else return $response->withRedirect('/edit-error');
     }
 	else {$file='img/bg-resto-1.jpg';} 
 	
@@ -185,7 +185,9 @@ $app->post('/edit-success', function(Request $request,Response $response,array $
 	return $response->withRedirect('/restaurant/'.$id); 
 });
 
-
+$app->get('/edit-error',function(Request $request, Response $response,array $args){
+	return $this->renderer->render($response,'edit-error.phtml',$args);
+});	
 
 
 ////////////////////////// delete One restaurant
