@@ -62,6 +62,7 @@ $app->get('/add-error',function(Request $request, Response $response,array $args
 });	
 /////////////////////// Formulaire d'ajout de review
 
+
 $app->get('/add',function(Request $request, Response $response,array $args){
 	return $this->renderer->render($response,'form.phtml',$args);
 }); 
@@ -195,8 +196,6 @@ $app->get('/edit-error',function(Request $request, Response $response,array $arg
 $app->get("/delete/[{id}]", function(Request $request,Response $response,array $args){
 	
 	$this->db;
-	
-	//$id=$request->getParam('id');
 	$id = $args['id'];
 	$restaurant = Restaurant::findOrFail($id);
 	$restaurant->delete();
@@ -228,8 +227,32 @@ $app->get('/resto',function(Request $request, Response $response) {
 	
 });
 
+//// affichache pour un type de cuisine
 
+$app->get('/type/[{type}]',function(Request $request,Response $response,array $args){
+	$this->db;
+	$type=mb_strtolower($args['type']);
+	echo $type;
+	$restaurants=Restaurant::where('type',$type)->orderBy('name')->get();
+	if(count($restaurants)==0) return $response->withRedirect('/'); // si l'utilisateur tape un type non répertorié dans la bare d'url
+	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
+});
+///// affichage par note
 
+$app->get('/restaurants/by-notes',function(Request $request,Response $response,array $args) {
+	$this->db;
+	$restaurants=Restaurant::orderBy('rating','desc')->get();
+	if(count($restaurants)==0) return $response->withRedirect('/'); 
+	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
+});
+
+///// affichage par prix
+$app->get('/restaurants/by-price',function(Request $request,Response $response,array $args) {
+	$this->db;
+	$restaurants=Restaurant::orderBy('price')->get();
+	if(count($restaurants)==0) return $response->withRedirect('/'); 
+	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
+});
 /////////////////////// Redirection par défaut
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
 /**	

@@ -9,11 +9,11 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Afficher tout</title>
-        <link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-		<link href='css/stylesheet2.css' rel='stylesheet' type='text/css'>
+        <link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href='../css/stylesheet2.css' rel='stylesheet' type='text/css'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="css/bootstrap/js/bootstrap.min.js"></script>
-		<link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.min.css">
+		<script src="../css/bootstrap/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
     </head>
 	
 	
@@ -37,8 +37,8 @@
 					<?php } ?>
 				</ul>
 			  </li>
-			  <li><a href="restaurants/by-notes">Les mieux notés</a></li>
-			  <li><a href="restaurants/by-price">Les moins cher</a></li>
+			  <li><a href="/restaurants/by-notes">Les mieux notés</a></li>
+			  <li><a href="/restaurants/by-price">Les moins cher</a></li>
 			</ul>
 		  </div>
 		</nav>
@@ -51,6 +51,7 @@
 			<div class="round_box bg-picture">
 		
 				<?php
+				
 					if(count($restaurants) == 0){
 				?>
 						<div class="panel panel-danger" > 
@@ -91,7 +92,7 @@
 							<!--Note-->
 							<div class="panel-body">
 							<p>
-								<img src="<?=$filepath?>" class="img-responsive img-rounded center-block" />
+								<img src="../<?=$filepath?>" class="img-responsive img-rounded center-block" />
 							</p>
 							<p> 
 							

@@ -19,11 +19,9 @@ body.body{
 	background:#ffffff;
 }
 
-a{
-	
-	
+a,a:hover,a:link,a:visited,a:active{	
 	color: #444;
-	
+	text-decoration: none !important; 
 }
 
 
@@ -33,23 +31,7 @@ a{
 	color : #444 !important;
 	 
 }
-/**
-.btn-success:hover{
-	background:#fffad5;
-	border-color: #8a8a8a;
-	
-	
-	
-}
 
-.btn-success:focus{
-	background:#fffad5;
-	border-color: #8a8a8a;
-	
-	
-	
-}
-**/
 .form-button{
 	margin-top:15px;
 	
@@ -204,34 +186,6 @@ textarea {
        Cela ne marche pas avec tous les navigateurs  */
     resize: vertical;
 }
-
-.button {
-    border: none;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-	background-color: #87c540;
-}
-
-
-
-.button:disabled {
-    background-color: #CCC;
-}
-
-
-
-.button:hover {
-    background-color: #ffffff;
-	color:#87c540;
-}
-
-
 
 
 
