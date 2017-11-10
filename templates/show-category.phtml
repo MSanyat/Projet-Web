@@ -34,7 +34,7 @@
 					'Europe du Nord',"Europe de l'Est",'Française','Fruits de mer','Gastronomique','Indienne',
 					'Italienne','Japonnaise','Orientale'];
 					foreach($types as $type) { ?>
-					<li><a href="/type/<?=$type?>"><?=$type ?></a></li>
+					<li><a href="/type/<?=str_replace('-',' ',$type)?>"><?=$type ?></a></li>
 					<?php } ?>
 				</ul>
 			  </li>

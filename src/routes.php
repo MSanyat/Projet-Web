@@ -230,8 +230,9 @@ $app->get('/resto',function(Request $request, Response $response) {
 //// affichache pour un type de cuisine
 
 $app->get('/type/[{type}]',function(Request $request,Response $response,array $args){
+
 	$this->db;
-	$type=mb_strtolower($args['type']);
+	$type=mb_strtolower(str_replace(' ','-',$args['type']));
 	$restaurants=Restaurant::where('type',$type)->orderBy('name')->get();
 	if(count($restaurants)==0) return $response->withRedirect('/'); // si l'utilisateur tape un type non répertorié dans la bare d'url
 	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
