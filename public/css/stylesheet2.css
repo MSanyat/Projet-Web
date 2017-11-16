@@ -42,7 +42,7 @@ a,a:hover,a:link,a:visited,a:active{
     /* Pour le centrer dans la page */
     margin: 0 auto;
     width: 400px;
-	display: inline-block;
+	
 	
 	/* Pour voir les limites du formulaire */
     border: 1px solid #CCC;

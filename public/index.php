@@ -15,9 +15,10 @@ if (PHP_SAPI == 'cli-server') {
         return false;
     }
 }
+/**
 spl_autoload_register(function ($classname) {
     require (__DIR__ . '\..\src\Models\\' . $classname . ".php");
-	});
+	}); **/
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -36,6 +37,6 @@ require __DIR__ . '/../src/middleware.php';
 
 // Register routes
 require __DIR__ . '/../src/routes.php';
-
+$app->getContainer()->get("db");
 // Run app
 $app->run();

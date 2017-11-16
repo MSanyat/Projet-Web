@@ -17,7 +17,7 @@
 	
         <h1>Mon experience chez...</h1>
 		
-		<div class="panel panel-warning">
+		<div class="panel panel-warning d-block">
 		
 			<?php
 				
@@ -94,19 +94,32 @@
 							
 							
 							
-			</div>
-							
-							
-					
-
+			
 							
 		
 		</div>
+		</div>
+		<div class="panel panel-warning d-block">
+			
+							
+			<div class="panel-heading">
+				<h2> Commentaires <span class="badge"><?=$nbComments?></span> </h2>
+			</div>
+			
+			<div class="panel-body">
+				<?php foreach ($comments as $commentaire) {
+					$name=$commentaire->name;
+					$comment=$commentaire->comment;
+					$date=$commentaire->created_at;
+				?>
+				<p> <?=$name?> le <?=$date?> </p>
+				<p> <?=$comment?> </p>
+				<?php } ?>
+				<button class="btn btn-lg btn-success"> <a href="/add-comment/<?=$id?>"> Ajouter un commentaire </a></button>
+				<button class="btn btn-lg btn-success"> <a href="/show-comments/<?=$id?>"> Voir tout </a></button>
+			</div>
 		
-		
-		
-		
-		
+		</div>
 		
 		
 		

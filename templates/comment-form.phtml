@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Ajouter un commentaire</title>
+		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href='css/stylesheet2.css' rel='stylesheet' type='text/css'>
+    </head>
+    <body >
+        <h1>Formulaire</h1>
+		
+		<div >
+		
+		
+		<form action="/add-comment/<?=$id?>" method="post" class="panel panel-warning" enctype="multipart/form-data">
+			
+			<div class = "panel-heading">
+				<h2>Ajouter un commentaire</h2>
+				
+			</div>
+			
+			<div class="panel-body">
+			
+				<!-- nom -->
+				<div>
+					<label for="name">Nom</label>
+					<input type="text" id="name" name="name"/>
+				</div>			
+				<!-- avis -->
+				<div>
+					<label for="comment">Avis</label>
+					<textarea id="comment" name="comment" ></textarea>
+				</div>
+				<div>			
+				<div >
+					<button type="submit" class="btn btn-lg btn-success form-button">Ajouter la review</button>
+				</div>
+				
+				</div>
+		</form>
+		
+		
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+    </body>
+</html>

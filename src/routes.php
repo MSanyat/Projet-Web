@@ -4,7 +4,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use Slim\Http\UploadedFile;
 //use Slim\Route;
-
+use App\Models\Restaurant;
 //use App\User;
 //use App\Http\Resources\User as UserResource;
 
@@ -15,54 +15,11 @@ use Slim\Http\UploadedFile;
 
 
 ////////////////////// Traitement de l'ajout de la review
-$app->post('/add', function(Request $request,Response $response,array $args) {
-	if (!empty($request->getParam('name')))	$name = strip_tags($request->getParam('name'));
-	if (!empty($request->getParam('location'))) $location=strip_tags($request->getParam('location'));
-	if (!empty($request->getParam('star'))) $star=strip_tags($request->getParam('star'));
-	if (!empty($request->getParam('type'))) $type=strip_tags($request->getParam('type'));
-	if (!empty($request->getParam('price'))) $price=strip_tags($request->getParam('price'));
-	if (!empty($request->getParam('review'))) $review=strip_tags($request->getParam('review'));
-	// récupérer l'image 
-	$uploadedFiles = $request->getUploadedFiles();
-	$uploadedFile = $uploadedFiles['file'];
-   if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-        $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
-		$basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
-		$filename = sprintf('%s.%0.8s', $basename, $extension);
-		$directory="img";
-		$uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
-     //   $response->write('uploaded ' . $filename . '<br/>');
-		$file=$directory . '/' . $filename;
-    }
-	// sinon image par défaut
-	else {$file='img/bg-resto-1.jpg';} 
-	
-if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !empty($price) && !empty($review)) {	
-		//connexion à la bdd
-		$this->db;
-		
-		//ajout dans la bdd
-		$restaurant=new Restaurant;
-		$restaurant->name=$name;
-		$restaurant->location=$location;
-		$restaurant->rating=$star;
-		$restaurant->type=$type;
-		$restaurant->price=$price;
-		$restaurant->review=$review;
-		$restaurant->filepath=$file;
-		$restaurant->save();
-		//echo 'Enregistrement effectué'; 
-
-		return $this->renderer->render($response, 'add-success.phtml', $args); 
-	}
-	else return $response->withRedirect('/add-error'.$id);
-});	
+$app->post('/add','RestaurantController:addRestaurant');	
 $app->get('/add-error',function(Request $request, Response $response,array $args){
 	return $this->renderer->render($response,'add-error.phtml',$args);
 });	
 /////////////////////// Formulaire d'ajout de review
-
-
 $app->get('/add',function(Request $request, Response $response,array $args){
 	return $this->renderer->render($response,'form.phtml',$args);
 }); 
@@ -91,178 +48,67 @@ $app->get('/installbdd',function(Request $request, Response $response){
 		$table->string('filepath');
 		$table->timestamps();
     });
+	
+	$capsule::schema()->dropIfExists('commentaires');
+		$capsule::schema()->create('commentaires', function (\Illuminate\Database\Schema\Blueprint $table) {
+        $table->increments('id');
+		$table->integer('id_restaurant');
+        $table->string('name');
+        $table->longText('comment');
+		$table->timestamps();
+    });
 		echo 'Création de la base';
 	});
 
 
-	
-	
 /////////////////////// Show all 
 
-$app->get('/show-all', function (Request $request, Response $response, array $args) {
+$app->get('/show-all', 'RestaurantController:showAll') ;
    
-   
-   
-		$this->db;
-		$restaurants = Restaurant::all();
-		
-		
-   
-    // Render view, passe la liste des restos en argument
-    return $this->renderer->render($response, 'show-all.phtml', ['restaurants' => $restaurants]);
-});
-
-
 ////////////////////////// show One restaurant
-$app->get("/restaurant/[{id}]", function(Request $request,Response $response,array $args){
-	
-	$this->db;
-	$id = $args['id'];
-	$restaurant = Restaurant::findOrFail($id);
-	return $this->renderer->render ($response, "restaurant.phtml", ["restaurant" => $restaurant]);
-
-});
-
-
-
+$app->get("/restaurant/[{id}]",'RestaurantController:showRestaurant');
 
 ////////////////////////// Edit One restaurant
-$app->get("/edit/[{id}]", function(Request $request,Response $response,array $args){
-	
-	$this->db;
-	$id = $args['id'];
-	$restaurant = Restaurant::findOrFail($id);
-	return $this->renderer->render ($response, "edit.phtml", ["restaurant" => $restaurant]);
-
-});
-
-
-
+$app->get("/edit/[{id}]",'RestaurantController:editRestaurant');
 
 ////////////////////// succès d'un edit, on retourne sur le restaurant modifié
-$app->post('/edit', function(Request $request,Response $response,array $args) {
-	$name = $request->getParam('name');
-	$location=$request->getParam('location');
-	$star=$request->getParam('star');
-	$type=$request->getParam('type');
-	$price=$request->getParam('price');
-	$review=$request->getParam('review');
-	$id=$request->getParam('id');
-	
-	// récupérer l'image 
-	$uploadedFiles = $request->getUploadedFiles();
-	$uploadedFile = $uploadedFiles['file'];
-   if ($uploadedFile->getError() === UPLOAD_ERR_OK) {
-        $extension = pathinfo($uploadedFile->getClientFilename(), PATHINFO_EXTENSION);
-		// vérification de l'extension du fichier
-		 if ($extension =="jpg" || $extension =="png") {
-			$basename = bin2hex(random_bytes(8)); // see http://php.net/manual/en/function.random-bytes.php
-			$filename = sprintf('%s.%0.8s', $basename, $extension);
-			$directory="img";
-			$uploadedFile->moveTo($directory . DIRECTORY_SEPARATOR . $filename);
-			$file=$directory . '/' . $filename;
-			echo $extension;
-		}
-		else return $response->withRedirect('/edit-error');
-    }
-	else {$file='img/bg-resto-1.jpg';} 
-	
-	//connexion à la bdd
-	$this->db;
-	
-	//update dans la bdd
-	$restaurant= Restaurant::findOrFail($id);
-	$restaurant->name=$name;
-	$restaurant->location=$location;
-	$restaurant->rating=$star;
-	$restaurant->type=$type;
-	$restaurant->price=$price;
-	$restaurant->review=$review;
-	$restaurant->filepath=$file;
-	
-	$restaurant->save();
-	//echo 'Enregistrement effectué'; 
-
-	//return $this->renderer->render($response, 'restaurant.phtml', ["restaurant" => $restaurant]); 
-	return $response->withRedirect('/restaurant/'.$id); 
-});
+$app->post('/edit','RestaurantController:editPostRestaurant');
 
 $app->get('/edit-error',function(Request $request, Response $response,array $args){
 	return $this->renderer->render($response,'edit-error.phtml',$args);
 });	
 
-
 ////////////////////////// delete One restaurant
-$app->get("/delete/[{id}]", function(Request $request,Response $response,array $args){
-	
-	$this->db;
-	$id = $args['id'];
-	$restaurant = Restaurant::findOrFail($id);
-	$restaurant->delete();
-	
-	
-	//$restaurants = Restaurant::all();
-		
-	
-	
-	return $this->renderer->render ($response, "delete-success.phtml", $args /*["restaurants" => $restaurants]*/);
-
-});
-
-
-
-
-
-////////////////////// ajout d'une route test
-$app->get('/test',function(Request $request, Response $response){
-	echo "ceci est un test";
-}); 
-$app->get('/resto',function(Request $request, Response $response) {
-	$this->db;
-	$restaurants = Restaurant::all();
-		
-		foreach($restaurants as $restaurant) {
-			echo $restaurant->name;
-		}
-	
-});
+$app->get("/delete/[{id}]",'RestaurantController:deleteRestaurant');
 
 //// affichache pour un type de cuisine
 
-$app->get('/type/[{type}]',function(Request $request,Response $response,array $args){
+$app->get('/type/[{type}]','RestaurantController:showByType');
 
-	$this->db;
-	$type=mb_strtolower(str_replace(' ','-',$args['type']));
-	$restaurants=Restaurant::where('type',$type)->orderBy('name')->get();
-	if(count($restaurants)==0) return $response->withRedirect('/'); // si l'utilisateur tape un type non répertorié dans la bare d'url
-	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
-});
 ///// affichage par note
 
-$app->get('/restaurants/by-notes',function(Request $request,Response $response,array $args) {
-	$this->db;
-	$restaurants=Restaurant::orderBy('rating','desc')->get();
-	if(count($restaurants)==0) return $response->withRedirect('/'); 
-	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
-});
+$app->get('/restaurants/by-notes','RestaurantController:showByNote');
 
 ///// affichage par prix
-$app->get('/restaurants/by-price',function(Request $request,Response $response,array $args) {
-	$this->db;
-	$restaurants=Restaurant::orderBy('price')->get();
-	if(count($restaurants)==0) return $response->withRedirect('/'); 
-	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
+$app->get('/restaurants/by-price','RestaurantController:showByPrice');
+
+//// Afficher le formulaire d'ajout de commentaire
+
+$app->get('/add-comment/[{id}]',function(Request $request,Response $response,array $args) {
+	$id = $args['id'];
+	return $this->renderer->render($response, 'comment-form.phtml', ['id' => $id]);
+	
 });
+///// Ajouter un commentaire
+
+$app->post('/add-comment/[{id}]','CommentaireController:addComment');
+
+//// afficher tous les commentaires
+$app->get('/show-comments/[{id}]','CommentaireController:showComments');
+
+
 /////////////////////// Redirection par défaut
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
-/**	
-    // Sample log message
-    $this->logger->info("Slim-Skeleton '/' route");
-	
-
-	
-    // Render index view
-    return $this->renderer->render($response, 'index.phtml', $args); **/
 	return $response->withRedirect('/show-all');
 }); 
 
@@ -271,14 +117,6 @@ $app->get('/[{name}]', function (Request $request, Response $response, array $ar
 
 
 
-
-//bonjour personnalisé
-$app->get('/hello/{name}', function (Request $request, Response $response) {
-    $name = $request->getAttribute('name');
-    $response->getBody()->write("Hello, $name");
-
-    return $response;
-});
 
 
 

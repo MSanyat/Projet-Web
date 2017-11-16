@@ -6,5 +6,12 @@
 		"monolog/monolog": ">=1.1.0",
         "slim/php-view": "^2.2"
 	
-    }
+    },
+	
+	"autoload": {
+    "psr-4": {"App\\Models\\": "src/Models/",
+	"App\\Controllers\\":"src/Controllers/"
+
+	}
+  }
 }

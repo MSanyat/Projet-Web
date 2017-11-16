@@ -38,9 +38,13 @@ $container[App\WidgetController::class] = function ($c) {
     $table = $c->get('db')->table('table_name');
     return new \App\WidgetController($view, $logger, $table);
 };
+$container['RestaurantController'] = function ($container) {
+	return new App\Controllers\RestaurantController($container);
+};
 
-
-
+$container['CommentaireController'] = function ($container) {
+	return new App\Controllers\CommentaireController($container);
+};
 
 
 
