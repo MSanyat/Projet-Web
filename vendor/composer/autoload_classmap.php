@@ -6,8 +6,13 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Auth' => $baseDir . '/src/Auth.php',
+    'App\\Controllers\\CommentaireController' => $baseDir . '/src/Controllers/CommentaireController.php',
     'App\\Controllers\\RestaurantController' => $baseDir . '/src/Controllers/RestaurantController.php',
+    'App\\Controllers\\UserController' => $baseDir . '/src/Controllers/UserController.php',
+    'App\\Models\\Commentaire' => $baseDir . '/src/Models/Commentaire.php',
     'App\\Models\\Restaurant' => $baseDir . '/src/Models/Restaurant.php',
+    'App\\Models\\Utilisateur' => $baseDir . '/src/Models/Utilisateur.php',
     'Carbon\\Carbon' => $vendorDir . '/nesbot/carbon/src/Carbon/Carbon.php',
     'Carbon\\CarbonInterval' => $vendorDir . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
     'Carbon\\Exceptions\\InvalidDateException' => $vendorDir . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',

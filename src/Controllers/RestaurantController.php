@@ -10,15 +10,17 @@ use Slim\Http\Response as Response;
 
 class RestaurantController {
 	
-	private $c = null;
 	private $renderer;
 	private $db;
+	private $isChecked;
 
     public function __construct($container)
     {
-        $this->c = $container;
+
 		$this->db=$container->db;
 		$this->renderer=$container->renderer;
+		$this->isChecked=$container->isChecked;
+		$this->user=$container->user;
     }
 	
 	public function showAll(Request $request,Response $response) {
@@ -26,11 +28,11 @@ class RestaurantController {
 		
 		$this->db;
 		$restaurants = Restaurant::all();
-		
-		
+		$isChecked=$this->isChecked;
+		$user=$this->user;
    
     // Render view, passe la liste des restos en argument
-    return $this->renderer->render($response, 'show-all.phtml', ['restaurants' => $restaurants]);
+    return $this->renderer->render($response, 'show-all.phtml', ['restaurants' => $restaurants,'isChecked'=>$isChecked,'user'=>$user]);
 	
 	}
 	

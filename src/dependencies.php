@@ -45,6 +45,18 @@ $container['RestaurantController'] = function ($container) {
 $container['CommentaireController'] = function ($container) {
 	return new App\Controllers\CommentaireController($container);
 };
+$container['UserController'] = function ($container) {
+	return new App\Controllers\UserController($container);
+};
 
+$container['Auth'] = function ($container) {
+	return new App\Auth($container);
+};
+$container['isChecked']= function($container) {
+	return App\Auth::check();
+};
 
+$container['user']=function($container) {
+	return App\Auth::getUser();
+};
 

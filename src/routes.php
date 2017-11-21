@@ -34,7 +34,7 @@ $app->get('/installbdd',function(Request $request, Response $response){
 
 	//a changer avec un if else pour créer la table que si elle n'existe pas
     
-
+	// table contenant les reviews de restaurants
     
 		$capsule::schema()->dropIfExists('restaurant');
 		$capsule::schema()->create('restaurant', function (\Illuminate\Database\Schema\Blueprint $table) {
@@ -49,6 +49,8 @@ $app->get('/installbdd',function(Request $request, Response $response){
 		$table->timestamps();
     });
 	
+	// table pour les commentaires
+	
 	$capsule::schema()->dropIfExists('commentaires');
 		$capsule::schema()->create('commentaires', function (\Illuminate\Database\Schema\Blueprint $table) {
         $table->increments('id');
@@ -57,6 +59,25 @@ $app->get('/installbdd',function(Request $request, Response $response){
         $table->longText('comment');
 		$table->timestamps();
     });
+	
+	// table pour les utilisateurs
+	$capsule::schema()->dropIfExists('utilisateurs');
+		$capsule::schema()->create('utilisateurs', function (\Illuminate\Database\Schema\Blueprint $table) {
+        $table->increments('id');
+		$table->string('username');
+		$table->string('email');
+		$table->string('password');
+		$table->timestamps();
+    });
+	
+	// table pour les favoris
+		$capsule::schema()->dropIfExists('favoris');
+		$capsule::schema()->create('favoris', function (\Illuminate\Database\Schema\Blueprint $table) {
+        $table->increments('id');
+		$table->integer('user_id');
+		$table->integer('restaurant_id');
+    });
+	
 		echo 'Création de la base';
 	});
 
@@ -103,14 +124,26 @@ $app->get('/add-comment/[{id}]',function(Request $request,Response $response,arr
 
 $app->post('/add-comment/[{id}]','CommentaireController:addComment');
 
-//// afficher tous les commentaires
+//// afficher tous les commentaires d'un article
 $app->get('/show-comments/[{id}]','CommentaireController:showComments');
 
+////// Connexion utilisateur
+$app->get('/login','UserController:login');
 
+$app->post('/login','UserController:postLogin');
+
+// Deconnexion
+$app->get('/logout','UserController:logout');
+
+///// Enregistrer un nouvel utilisateur
+$app->get('/signup','UserController:signup');
+
+$app->post('/signup','UserController:postSignup');
 /////////////////////// Redirection par défaut
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
 	return $response->withRedirect('/show-all');
 }); 
+
 
 
 

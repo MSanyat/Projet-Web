@@ -57,6 +57,7 @@ class ComposerStaticInite73ac3e9be16ab40cffc60077123cdd9
         array (
             'App\\Models\\' => 11,
             'App\\Controllers\\' => 16,
+            'App\\' => 4,
         ),
     );
 
@@ -141,6 +142,10 @@ class ComposerStaticInite73ac3e9be16ab40cffc60077123cdd9
         array (
             0 => __DIR__ . '/../..' . '/src/Controllers',
         ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
     );
 
     public static $prefixesPsr0 = array (
@@ -173,8 +178,13 @@ class ComposerStaticInite73ac3e9be16ab40cffc60077123cdd9
     );
 
     public static $classMap = array (
+        'App\\Auth' => __DIR__ . '/../..' . '/src/Auth.php',
+        'App\\Controllers\\CommentaireController' => __DIR__ . '/../..' . '/src/Controllers/CommentaireController.php',
         'App\\Controllers\\RestaurantController' => __DIR__ . '/../..' . '/src/Controllers/RestaurantController.php',
+        'App\\Controllers\\UserController' => __DIR__ . '/../..' . '/src/Controllers/UserController.php',
+        'App\\Models\\Commentaire' => __DIR__ . '/../..' . '/src/Models/Commentaire.php',
         'App\\Models\\Restaurant' => __DIR__ . '/../..' . '/src/Models/Restaurant.php',
+        'App\\Models\\Utilisateur' => __DIR__ . '/../..' . '/src/Models/Utilisateur.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',
         'Carbon\\CarbonInterval' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/CarbonInterval.php',
         'Carbon\\Exceptions\\InvalidDateException' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Exceptions/InvalidDateException.php',
