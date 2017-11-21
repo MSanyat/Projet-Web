@@ -66,4 +66,10 @@ class UserController {
 		session_destroy();
 		return $response->withRedirect('/');
 	}
+	
+	public function showProfile(Request $request,Response $response,array $args) {
+		$user=$this->user;
+		return $this->renderer->render($response,'myaccount.phtml',["user"=>$user]);
+		
+	}
 }

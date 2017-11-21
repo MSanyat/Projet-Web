@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Restaurant as Restaurant;
 use App\Models\Commentaire as Commentaire;
+use App\Models\Favori as Favori;
 use Slim\Http\Request as Request;
 use Slim\Http\Response as Response;
 
@@ -86,8 +87,18 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 	$restaurant = Restaurant::findOrFail($id);
 	$comments=Commentaire::where('id_restaurant',$id)->orderBy('created_at','desc')->take(5)->get();
 	$nbComments=Commentaire::where('id_restaurant',$id)->count();
-	//echo $nbComments;
-	return $this->renderer->render ($response, "restaurant.phtml", ["restaurant" => $restaurant,"comments"=>$comments,"nbComments"=>$nbComments]);
+	$isChecked=$this->isChecked; // pour afficher ou non les boutons d'édition et de suppression
+	// pour savoir si le restaurant a été ou non ajouté dans les favoris
+	if ($isChecked) {
+		$user=$this->user;
+		$favori=Favori::where('user_id',$user)->where('restaurant_id',$id)->get();
+		if ($favori ==null) {
+			$isFavorite=false;
+		}
+		else $isFavorite=true;
+	}
+	else $isFavorite=false;
+	return $this->renderer->render ($response, "restaurant.phtml", ["restaurant" => $restaurant,"comments"=>$comments,"nbComments"=>$nbComments,"isChecked"=>$isChecked,"isFavorite"=>$isFavorite]);
 	}
 
 	public function editRestaurant(Request $request,Response $response,array $args) {
@@ -144,7 +155,7 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 	}
 
 	public function deleteRestaurant(Request $request,Response $response,array $args) {
-		$this->db;
+	$this->db;
 	$id = $args['id'];
 	$restaurant = Restaurant::findOrFail($id);
 	$restaurant->delete();	

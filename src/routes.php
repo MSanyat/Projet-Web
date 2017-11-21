@@ -139,6 +139,16 @@ $app->get('/logout','UserController:logout');
 $app->get('/signup','UserController:signup');
 
 $app->post('/signup','UserController:postSignup');
+
+/// afficher son profil
+$app->get('/my-account','UserController:showProfile');
+
+//// ajouter aux favoris
+$app->get('/add-favorite/[{id}]','FavoriController:addFavorite');
+
+//// supprimer des favoris
+$app->get('/delete-favorite/[{id}]','FavoriController:deleteFavorite');
+
 /////////////////////// Redirection par défaut
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {
 	return $response->withRedirect('/show-all');

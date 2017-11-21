@@ -85,13 +85,19 @@
 								?>
 							</p>
 							
-							<p>Avis : <?=$review ?></p>
+							<p>Avis : </p>
+							<p> <?=$review ?></p>
+							<?php if ($isChecked) { ?>
 							
-				
-							<button class="btn btn-lg btn-success"> <a href="/edit/<?=$id?>"> Modifier </a></button>
-							<button class="btn btn-lg btn-success"> <a href="/show-all"> Retour aux restaurants </a></button>
+								<?php if ($isFavorite) { ?>
+							<button class="btn btn-lg btn-success"> <a href="/delete-favorite/<?=$id?>"> Supprimer des favoris </a></button>	
+								<?php } else { ?>
+							<button class="btn btn-lg btn-success"> <a href="/add-favorite/<?=$id?>"> Ajouter aux favoris </a></button>
+								<?php } ?>
+							<button class="btn btn-lg btn-success"> <a href="/edit/<?=$id?>"> Modifier </a></button>							
 							<button class="btn btn-lg btn-success"> <a href="/delete/<?=$id?>"> Supprimer </a></button>
-							
+							<?php } ?>
+							<button class="btn btn-lg btn-success"> <a href="/show-all"> Retour aux restaurants </a></button>
 							
 							
 			

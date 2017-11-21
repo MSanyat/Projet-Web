@@ -48,7 +48,9 @@ $container['CommentaireController'] = function ($container) {
 $container['UserController'] = function ($container) {
 	return new App\Controllers\UserController($container);
 };
-
+$container['FavoriController'] = function ($container) {
+	return new App\Controllers\FavoriController($container);
+};
 $container['Auth'] = function ($container) {
 	return new App\Auth($container);
 };

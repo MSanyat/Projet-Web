@@ -15,6 +15,7 @@ class Favori extends Eloquent {
 	protected $id;
 	protected $user_id;
 	protected $restaurant_id;
+	public $timestamps=false;
 
 
 }
