@@ -14,6 +14,7 @@ class RestaurantController {
 	private $renderer;
 	private $db;
 	private $isChecked;
+	private $user;
 
     public function __construct($container)
     {
@@ -75,14 +76,21 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 		$restaurant->filepath=$file;
 		$restaurant->save();
 		//echo 'Enregistrement effectué'; 
-
-		return $this->renderer->render($response, 'add-success.phtml', $args); 
+		$isChecked=$this->isChecked;
+		$user=$this->user;
+		return $this->renderer->render($response, 'add-success.phtml',['isChecked'=>$isChecked,'user'=>$user]); 
 	}
 	else return $response->withRedirect('/add-error'.$id);
 	}
 	
+	public function getAddRestaurant(Request $request,Response $response,array $args) {
+			$isChecked=$this->isChecked;
+			$user=$this->user;
+			return $this->renderer->render($response,'form.phtml',['isChecked'=>$isChecked,'user'=>$user]);
+	}
 	public function showRestaurant(Request $request,Response $response,array $args) {
 		$this->db;
+		$user=$this->user;
 	$id = $args['id'];
 	$restaurant = Restaurant::findOrFail($id);
 	$comments=Commentaire::where('id_restaurant',$id)->orderBy('created_at','desc')->take(5)->get();
@@ -90,22 +98,24 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 	$isChecked=$this->isChecked; // pour afficher ou non les boutons d'édition et de suppression
 	// pour savoir si le restaurant a été ou non ajouté dans les favoris
 	if ($isChecked) {
-		$user=$this->user;
-		$favori=Favori::where('user_id',$user)->where('restaurant_id',$id)->get();
-		if ($favori ==null) {
+
+		$favori=$user->restaurants;
+		if (sizeof($favori)==0) {
 			$isFavorite=false;
 		}
 		else $isFavorite=true;
 	}
 	else $isFavorite=false;
-	return $this->renderer->render ($response, "restaurant.phtml", ["restaurant" => $restaurant,"comments"=>$comments,"nbComments"=>$nbComments,"isChecked"=>$isChecked,"isFavorite"=>$isFavorite]);
+	return $this->renderer->render ($response, "restaurant.phtml", ["restaurant" => $restaurant,"comments"=>$comments,"nbComments"=>$nbComments,"isChecked"=>$isChecked,"isFavorite"=>$isFavorite,'user'=>$user]);
 	}
 
 	public function editRestaurant(Request $request,Response $response,array $args) {
 	$this->db;
 	$id = $args['id'];
+	$isChecked=$this->isChecked;
+	$user=$this->user;
 	$restaurant = Restaurant::findOrFail($id);
-	return $this->renderer->render ($response, "edit.phtml", ["restaurant" => $restaurant]);
+	return $this->renderer->render ($response, "edit.phtml", ["restaurant" => $restaurant,'isChecked'=>$isChecked,'user'=>$user]);
 	}
 
 	public function editPostRestaurant(Request $request,Response $response,array $args) {
@@ -157,31 +167,39 @@ if (!empty($name) && !empty($location) && !empty($star) && !empty($type) && !emp
 	public function deleteRestaurant(Request $request,Response $response,array $args) {
 	$this->db;
 	$id = $args['id'];
+	$isChecked=$this->isChecked;
+	$user=$this->user;	
 	$restaurant = Restaurant::findOrFail($id);
 	$restaurant->delete();	
-	return $this->renderer->render ($response, "delete-success.phtml");
+	return $this->renderer->render ($response, "delete-success.phtml",['isChecked'=>$isChecked,'user'=>$user]);
 	}
 
 	public function showByType(Request $request,Response $response,array $args) {
 		$this->db;
+		$isChecked=$this->isChecked;
+		$user=$this->user;
 	$type=mb_strtolower(str_replace(' ','-',$args['type']));
 	$restaurants=Restaurant::where('type',$type)->orderBy('name')->get();
 	if(count($restaurants)==0) return $response->withRedirect('/'); // si l'utilisateur tape un type non répertorié dans la bare d'url
-	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
+	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants,'isChecked'=>$isChecked,'user'=>$user]);
 	}
 
 	public function showByNote(Request $request,Response $response,array $args) {
 	$this->db;
+	$isChecked=$this->isChecked;
+	$user=$this->user;
 	$restaurants=Restaurant::orderBy('rating','desc')->get();
 	if(count($restaurants)==0) return $response->withRedirect('/'); 
-	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
+	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants,'isChecked'=>$isChecked,'user'=>$user]);
 	}
 
 	public function showByPrice(Request $request,Response $response,array $args) {
 	$this->db;
+	$isChecked=$this->isChecked;
+	$user=$this->user;
 	$restaurants=Restaurant::orderBy('price')->get();
 	if(count($restaurants)==0) return $response->withRedirect('/'); 
-	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants]);
+	else return $this->renderer->render($response, 'show-category.phtml', ['restaurants' => $restaurants,'isChecked'=>$isChecked,'user'=>$user]);
 	}
 	
 	

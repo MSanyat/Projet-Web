@@ -13,17 +13,6 @@ use App\Models\Restaurant;
 
 
 
-
-////////////////////// Traitement de l'ajout de la review
-$app->post('/add','RestaurantController:addRestaurant');	
-$app->get('/add-error',function(Request $request, Response $response,array $args){
-	return $this->renderer->render($response,'add-error.phtml',$args);
-});	
-/////////////////////// Formulaire d'ajout de review
-$app->get('/add',function(Request $request, Response $response,array $args){
-	return $this->renderer->render($response,'form.phtml',$args);
-}); 
-
 ////////////////////// route création bdd
 $app->get('/installbdd',function(Request $request, Response $response){
 		//Establish DB connection, see settings.php for databse configuration settings (password...)
@@ -74,12 +63,21 @@ $app->get('/installbdd',function(Request $request, Response $response){
 		$capsule::schema()->dropIfExists('favoris');
 		$capsule::schema()->create('favoris', function (\Illuminate\Database\Schema\Blueprint $table) {
         $table->increments('id');
-		$table->integer('user_id');
-		$table->integer('restaurant_id');
+		$table->integer('user_id')->unsigned();
+		$table->foreign('user_id')->references('id')->on('utilisateurs')->onDelete('cascade');
+		$table->integer('restaurant_id')->unsigned();
+		$table->foreign('restaurant_id')->references('id')->on('restaurant')->onDelete('cascade');
     });
 	
 		echo 'Création de la base';
 	});
+////////////////////// Traitement de l'ajout de la review
+$app->post('/add','RestaurantController:addRestaurant');	
+$app->get('/add-error',function(Request $request, Response $response,array $args){
+	return $this->renderer->render($response,'add-error.phtml',["isChecked"=>$this->isChecked,"user"=>$this->user]);
+});	
+/////////////////////// Formulaire d'ajout de review
+$app->get('/add','RestaurantController:getAddRestaurant');
 
 
 /////////////////////// Show all 
@@ -96,7 +94,7 @@ $app->get("/edit/[{id}]",'RestaurantController:editRestaurant');
 $app->post('/edit','RestaurantController:editPostRestaurant');
 
 $app->get('/edit-error',function(Request $request, Response $response,array $args){
-	return $this->renderer->render($response,'edit-error.phtml',$args);
+	return $this->renderer->render($response,'edit-error.phtml',["isChecked"=>$this->isChecked,"user"=>$this->user]);
 });	
 
 ////////////////////////// delete One restaurant
@@ -115,14 +113,11 @@ $app->get('/restaurants/by-price','RestaurantController:showByPrice');
 
 //// Afficher le formulaire d'ajout de commentaire
 
-$app->get('/add-comment/[{id}]',function(Request $request,Response $response,array $args) {
-	$id = $args['id'];
-	return $this->renderer->render($response, 'comment-form.phtml', ['id' => $id]);
+$app->get('/add-comment/[{id}]','CommentaireController:addComment');
 	
-});
 ///// Ajouter un commentaire
 
-$app->post('/add-comment/[{id}]','CommentaireController:addComment');
+$app->post('/add-comment/[{id}]','CommentaireController:postAddComment');
 
 //// afficher tous les commentaires d'un article
 $app->get('/show-comments/[{id}]','CommentaireController:showComments');
@@ -138,6 +133,10 @@ $app->get('/logout','UserController:logout');
 ///// Enregistrer un nouvel utilisateur
 $app->get('/signup','UserController:signup');
 
+$app->get('/signup-success',function(Request $request, Response $response,array $args){
+	return $this->renderer->render($response,'signup-success.phtml',["isChecked"=>$this->isChecked,"user"=>$this->user]);
+});
+
 $app->post('/signup','UserController:postSignup');
 
 /// afficher son profil
@@ -148,6 +147,9 @@ $app->get('/add-favorite/[{id}]','FavoriController:addFavorite');
 
 //// supprimer des favoris
 $app->get('/delete-favorite/[{id}]','FavoriController:deleteFavorite');
+
+/// afficher les favoris 
+$app->get('/show-favorites','FavoriController:showFavorites');
 
 /////////////////////// Redirection par défaut
 $app->get('/[{name}]', function (Request $request, Response $response, array $args) {

@@ -5,15 +5,17 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Ajouter un commentaire</title>
-		<link href="css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href='css/stylesheet2.css' rel='stylesheet' type='text/css'>
+		<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href='../css/stylesheet2.css' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="../css/bootstrap/js/bootstrap.min.js"></script>
     </head>
     <body >
-        <h1>Formulaire</h1>
-		
+        <h1>Ajouter un commentaire</h1>
+		<?php include 'menu.phtml';?>
 		<div >
 		
-		
+		<div class="round_box bg-picture">
 		<form action="/add-comment/<?=$id?>" method="post" class="panel panel-warning" enctype="multipart/form-data">
 			
 			<div class = "panel-heading">
@@ -40,7 +42,7 @@
 				
 				</div>
 		</form>
-		
+		</div>
 		
 		</div>
 		

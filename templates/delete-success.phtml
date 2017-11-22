@@ -7,22 +7,30 @@
         <title>Expérience restaurant supprimée</title>
 		<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">		
         <link href='../css/stylesheet2.css' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="../css/bootstrap/js/bootstrap.min.js"></script>
 
     </head>
     <body >
-        <h1>Expérience restaurant supprimée</h1>
+		<h1>Suppression d'une expérience restaurant</h1>
+        <?php include 'menu.phtml';?>
+		<div class="round_box bg-picture">
+		<div class="panel panel-warning">
 		
-		<div class="form-div">
+				<div  class="panel-heading">
+					<h2>L'expérience a bien été supprimée</h2>
+				
+				</div> 
+				
+				<div  class="panel-body">
+					<button class="btn btn-lg btn-success"> <a href="/show-all"> Retour aux restaurants </a></button>
+				</div> 
 		
 		
 		
-        <h2>L'expérience a bien été supprimée</h2>
+		</div>
 		
-		
-		<form method="get" action="/show-all">
-							
-			<input type="submit" value="Retour aux restaurants"  class="button"  />
-		</form>		
+		</div>
 		
 		
 		</div>

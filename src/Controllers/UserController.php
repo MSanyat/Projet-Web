@@ -23,7 +23,9 @@ class UserController {
     }
 	
 	public function login(Request $request,Response $response,array $args) {
-		return $this->renderer->render($response,'login.phtml');
+		$isChecked=$this->isChecked;
+		$user=$this->user;
+		return $this->renderer->render($response,'login.phtml',["user"=>$user,'isChecked'=>$isChecked,'user'=>$user]);
 	}
 	
 	public function postLogin(Request $request,Response $response,array $args) {
@@ -42,7 +44,9 @@ class UserController {
 	}
 	
 	public function signup(Request $request,Response $response,array $args) {
-		return $this->renderer->render($response,'signup.phtml');
+		$isChecked=$this->isChecked;
+		$user=$this->user;
+		return $this->renderer->render($response,'signup.phtml',["user"=>$user,'isChecked'=>$isChecked,'user'=>$user]);
 	}
 	
 	public function postSignup(Request $request,Response $response,array $args) {
@@ -56,9 +60,9 @@ class UserController {
 		$user->email=$email; 
 		$user->password=password_hash($password,PASSWORD_DEFAULT);
 		$user->save();
-		return $response->withRedirect('/');
+		return $response->withRedirect('/signup-success');
 		}
-		
+		else return $response->withRedirect('/signup');
 	}
 	
 	public function logout(Request $request,Response $response,array $args) {
@@ -68,8 +72,9 @@ class UserController {
 	}
 	
 	public function showProfile(Request $request,Response $response,array $args) {
+		$isChecked=$this->isChecked;
 		$user=$this->user;
-		return $this->renderer->render($response,'myaccount.phtml',["user"=>$user]);
+		return $this->renderer->render($response,'myaccount.phtml',["user"=>$user,'isChecked'=>$isChecked,'user'=>$user]);
 		
 	}
 }

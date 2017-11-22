@@ -21,7 +21,9 @@ class Restaurant extends Eloquent {
 	protected $review;
 	protected $filepath;
 	
-	
+		public function utilisateurs(){
+    return $this->belongsToMany('App\Models\Utilisateur', 'favoris', 'restaurant_id', 'user_id');
+}
 	
 
 }

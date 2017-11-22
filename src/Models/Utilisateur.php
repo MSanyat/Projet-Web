@@ -17,5 +17,7 @@ class Utilisateur extends Eloquent {
 	protected $email;
 	protected $password;
 
-
+	public function restaurants(){
+    return $this->belongsToMany('App\Models\Restaurant', 'favoris', 'user_id', 'restaurant_id');
+}
 }

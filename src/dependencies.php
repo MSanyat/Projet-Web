@@ -49,7 +49,8 @@ $container['UserController'] = function ($container) {
 	return new App\Controllers\UserController($container);
 };
 $container['FavoriController'] = function ($container) {
-	return new App\Controllers\FavoriController($container);
+	$collection=new Illuminate\Support\Collection;
+	return new App\Controllers\FavoriController($container,$collection);
 };
 $container['Auth'] = function ($container) {
 	return new App\Auth($container);

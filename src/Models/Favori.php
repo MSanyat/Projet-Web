@@ -11,7 +11,6 @@ class Favori extends Eloquent {
 
 	
 	protected $table = 'favoris';
-	
 	protected $id;
 	protected $user_id;
 	protected $restaurant_id;

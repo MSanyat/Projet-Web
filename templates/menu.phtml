@@ -5,7 +5,7 @@
 			  <a class="navbar-brand" href="#">WebSiteName</a>
 			</div> -->
 			<ul class="nav navbar-nav">
-			  <li class="active"><a href="/">Home</a></li>
+			  <li class="active"><a href="/">Accueil</a></li>
 			  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Type de cuisine <span class="caret"></span></a>
 				<ul class="dropdown-menu">
 					<?php $types=['Africaine','Amérique du Nord','Amérique du Sud','Chinoise','Espagnole',
@@ -16,25 +16,25 @@
 					<?php } ?>
 				</ul>
 			  </li>
-			  <li><a href="restaurants/by-notes">Les mieux notés</a></li>
-			  <li><a href="restaurants/by-price">Les moins cher</a></li>
-			</ul>
-			
-			<?php if ($isChecked) { ?>
+			  <li><a href="/restaurants/by-notes">Les mieux notés</a></li>
+			  <li><a href="/restaurants/by-price">Les moins cher</a></li>
+			  <?php if ($isChecked) { ?>
 			 <!-- l'utilisateur est connecté -->
 
-			 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#"><?=$user->username?> <span class="caret"></span></a>
+			 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" role="menu" href="#"><?=$user->username?> <span class="caret"></span></a>
 				<ul class="dropdown-menu">				
 					<li><a href="/my-account">Mon compte</a></li>
-					<li><a href="#">Mes restaurants</a></li>
+					<li><a href="/show-favorites">Mes favoris</a></li>
 					<li><a href="/add">Ajouter un restaurant</a></li>
 					<li><a href="/logout">Se déconnecter</a></li>
 				</ul>
 			  </li>
-			<!--  <a href="/add"> <button class="btn btn-lg btn-success">  </button></a> -->
 			<?php } else {?>
 			<!-- on affiche le lien pour se connecter -->
 			<div> <a href="/login">Se connecter</a></div>
 			<?php } ?>
+			</ul>
+			
+			
 			
 		  </div>

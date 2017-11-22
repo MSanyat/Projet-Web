@@ -8,7 +8,7 @@
         <meta charset="utf-8"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Afficher tout</title>
+        <title>Commentaires</title>
         <link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 		<link href='../css/stylesheet2.css' rel='stylesheet' type='text/css'>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -20,31 +20,7 @@
 	
     <body>
 		<h1>Toutes les reviews de restaurants</h1>
-		<nav class="navbar ">
-		  <div class="container-fluid">
-		  <!--
-			<div class="navbar-header">
-			  <a class="navbar-brand" href="#">WebSiteName</a>
-			</div> -->
-			<ul class="nav navbar-nav">
-			  <li class="active"><a href="/">Home</a></li>
-			  <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Type de cuisine <span class="caret"></span></a>
-				<ul class="dropdown-menu">
-					<?php $types=['Africaine','Amérique du Nord','Amérique du Sud','Chinoise','Espagnole',
-					'Europe du Nord',"Europe de l'Est",'Française','Fruits de mer','Gastronomique','Indienne',
-					'Italienne','Japonnaise','Orientale'];
-					foreach($types as $type) { ?>
-					<li><a href="/type/<?=str_replace("'","-",str_replace(' ','-',$type))?>"><?=$type ?></a></li>
-					<?php } ?>
-				</ul>
-			  </li>
-			  <li><a href="restaurants/by-notes">Les mieux notés</a></li>
-			  <li><a href="restaurants/by-price">Les moins cher</a></li>
-			</ul>
-			<a href="/add"> <button class="btn btn-lg btn-success"> Ajouter une expérience </button></a>
-		  </div>
-		  
-		</nav>
+		<?php include 'menu.phtml';?>
         
 		
 						
@@ -88,7 +64,7 @@
 			
 		
 		</div>
-		
+		<button class="btn btn-lg btn-success form-button"><a href="/restaurant/<?=$id?>">Retour à la review</a></button>
 		
     </body>
 </html>

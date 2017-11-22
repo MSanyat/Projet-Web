@@ -9,14 +9,16 @@
         <title>Mon experience chez...</title>
 		<link href="../css/bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link href='../css/stylesheet2.css' rel='stylesheet' type='text/css'>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script src="../css/bootstrap/js/bootstrap.min.js"></script>
 		<link rel="stylesheet" href="../font-awesome-4.7.0/css/font-awesome.min.css">
 
     </head>
     <body class = "body">
 	
-	
-        <h1>Mon experience chez...</h1>
 		
+        <h1>Mon experience chez...</h1>
+		<?php include 'menu.phtml';?>
 		<div class="panel panel-warning d-block">
 		
 			<?php
@@ -87,8 +89,8 @@
 							
 							<p>Avis : </p>
 							<p> <?=$review ?></p>
-							<?php if ($isChecked) { ?>
-							
+							<?php if ($isChecked) {  ?>
+								
 								<?php if ($isFavorite) { ?>
 							<button class="btn btn-lg btn-success"> <a href="/delete-favorite/<?=$id?>"> Supprimer des favoris </a></button>	
 								<?php } else { ?>

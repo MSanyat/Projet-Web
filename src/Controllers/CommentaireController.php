@@ -13,15 +13,24 @@ class CommentaireController {
 	private $c = null;
 	private $renderer;
 	private $db;
+	private $isChecked;
+	private $user;
 
     public function __construct($container) {
         $this->c = $container;
 		$this->db=$container->db;
 		$this->renderer=$container->renderer;
+		$this->isChecked=$container->isChecked;
+		$this->user=$container->user;
     }
 	
-	
-	public function addComment(Request $request,Response $response,array $args) {
+	 public function addComment(Request $request,Response $response,array $args){
+		 $id = $args['id'];
+		 $isChecked=$this->isChecked;
+		$user=$this->user;
+	return $this->renderer->render($response, 'comment-form.phtml', ['id' => $id,'isChecked'=>$isChecked,'user'=>$user]);
+	 }
+	public function postAddComment(Request $request,Response $response,array $args) {
 		$id_restaurant=$args['id'];
 	
 	if (!empty($request->getParam('name')))	$name = strip_tags($request->getParam('name'));
@@ -42,10 +51,12 @@ class CommentaireController {
 	public function showComments(Request $request,Response $response,array $args) {
 		$id_restaurant=$args['id'];
 	$this->db;
+	$isChecked=$this->isChecked;
+		$user=$this->user;
 	$commentaires=Commentaire::where('id_restaurant',$id_restaurant)->get();
 	if (!empty($commentaires)) {
 		$nbComments=Commentaire::where('id_restaurant',$id_restaurant)->count();
-		return $this->renderer->render($response,'show-comments.phtml',['commentaires'=> $commentaires,'nbComments'=>$nbComments]);		
+		return $this->renderer->render($response,'show-comments.phtml',['commentaires'=> $commentaires,'nbComments'=>$nbComments,'isChecked'=>$isChecked,'user'=>$user]);		
 	}
 	else $response->withRedirect('/restaurant/'.$id_restaurant); 
 	}
